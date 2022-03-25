@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import { React, useState } from "react";
+import "./App.css";
+import SiteRouter from "./Components/Site-Router/siter-router";
 
 function App() {
+  const [user, setUser] = useState(undefined);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <SiteRouter user={user} setUser={setUser}/>
     </div>
-  );
+  )
 }
 
 export default App;
