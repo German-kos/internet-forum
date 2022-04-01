@@ -95,6 +95,9 @@ function Layout({ user, setUser, users, children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleHomeClick = () =>{
+    return navigate("/");
+  }
   const handleSignIn = () => {
     console.log("handleSignIn");
     return user === undefined ? navigate("/login") : navigate("/");
@@ -172,6 +175,9 @@ function Layout({ user, setUser, users, children }) {
           </DrawerHeader>
           <Divider />
           <List>
+            <ListItem button onClick={handleHomeClick}>
+              Home
+            </ListItem>
             <ListItem button onClick={handleProfileClick}>
               Profile
             </ListItem>

@@ -5,13 +5,15 @@ import PublicProfileOthers from "../Profile/PublicProfileOthers";
 import Home from "../Landing-Page/Home.jsx";
 import Layout from "../Landing-Page/Layout";
 import Forums from "../Forum/Forums";
+import ThreadsList from "../Forum/ThreadsList";
 
 function SiteRouter({ user, setUser, users }) {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout user={user} setUser={setUser} users={users} />}>
-          <Route index element={<Forums />}></Route>
+          <Route index element={<Forums />} />
+          <Route path="/categories/:categoryID" element={<ThreadsList />} />
           <Route
             path="/profile"
             element={

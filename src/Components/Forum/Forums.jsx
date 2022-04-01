@@ -12,61 +12,116 @@ import { Category } from "@mui/icons-material";
 function Forums() {
   const [forums, setForums] = useState([]);
   const navigate = useNavigate();
-  if (localStorage.getItem("Forums") === null)
+  if (localStorage.getItem("forums") === null)
     localStorage.setItem(
-      "Forums",
+      "forums",
       JSON.stringify([
         {
-          Category: "General Discussions",
+          category: "General Discussions",
           id: "generaldiscussions",
-          threads: [],
           pic: "/files/Forum-Pictures/discussions.jpg",
           info: "Talk about anything you want.",
         },
         {
-          Category: "Music",
+          category: "Music",
           id: "music",
-          threads: [],
           pic: "/files/Forum-Pictures/music.jpg",
           info: "Enjoy music with others.",
         },
         {
-          Category: "Hobbies",
+          category: "Hobbies",
           id: "hobbies",
-          threads: [],
           pic: "/files/Forum-Pictures/hobbies.jpg",
           info: "Share and discover hobbies.",
         },
         {
-          Category: "Video Games",
+          category: "Video Games",
           id: "videogames",
-          threads: [],
           pic: "/files/Forum-Pictures/video-games.jpg",
           info: "For the passion of gamers.",
         },
         {
-          Category: "Art",
+          category: "Art",
           id: "art",
-          threads: [],
           pic: "/files/Forum-Pictures/art.jpg",
           info: "Share your creations with the world.",
         },
       ])
     );
+  if (localStorage.getItem("threads") === null)
+    localStorage.setItem(
+      "threads",
+      JSON.stringify([
+        {
+          categoryID: "generaldiscussions",
+          threadID: 1,
+          author: "John1",
+          threadName:"test",
+          content: "Hello World!, from John.",
+          views: 0,
+          comments: 0,
+        },
+        {
+          categoryID: "generaldiscussions",
+          threadID: 2,
+          author: "Jane1",
+          threadName:"test",
+          content: "Hello World! from Jane.",
+          views: 0,
+          comments: 0,
+        },
+        {
+          categoryID: "music",
+          threadID: 3,
+          author: "John1",
+          threadName:"test",
+          content: "Hello Musicians!",
+          views: 0,
+          comments: 0,
+        },
+        {
+          categoryID: "hobbies",
+          threadID: 4,
+          author: "Jane1",
+          threadName:"test",
+          content: "Hello Hobbyists!",
+          views: 0,
+          comments: 0,
+        },
+        {
+          categoryID: "videogames",
+          threadID: 5,
+          author: "John1",
+          threadName:"test",
+          content: "Hello Gamers!",
+          views: 0,
+          comments: 0,
+        },
+        {
+          categoryID: "art",
+          threadID: 6,
+          author: "John1",
+          threadName:"test",
+          content: "Hello Artists!",
+          views: 0,
+          comments: 0,
+        },
+      ])
+    );
   useEffect(async () => {
-    setForums(JSON.parse(localStorage.getItem("Forums")))
+    setForums(JSON.parse(localStorage.getItem("forums")));
   }, []);
   const handleClick = (e, eCategory) => {
-    console.log(Category.id);
+    console.log(eCategory.id);
     return navigate(`/categories/${eCategory.id}`);
   };
   return forums !== [] ? (
     <>
       <div className="categories">
-        {forums?.map((Category, i) => {
+        {forums?.map((category, i) => {
           return (
             <Card
-              onClick={() => handleClick(this, Category)}
+              onClick={() => handleClick(this, category)}
               key={i}
               sx={{
                 minWidth: 345,
@@ -78,15 +133,15 @@ function Forums() {
               <CardMedia
                 component="img"
                 height="140"
-                image={Category.pic}
-                alt={Category.Category}
+                image={category.pic}
+                alt={category.category}
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {Category.Category}
+                  {category.category}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {Category.info}
+                  {category.info}
                 </Typography>
               </CardContent>
             </Card>
