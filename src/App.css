@@ -1,8 +1,42 @@
-.container{
-    display:flex;
-    align-items: center;
-    margin-left: 10px;
+.container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
 }
-.container > p{
-    margin-left: 10px;
+.container > p {
+  margin-left: 10px;
+}
+.threadCards {
+  display: flex;
+  border: 1px solid rgb(48, 48, 48);
+  border-radius: 22px;
+  font-weight:bolder;
+  margin-top:1%;
+  padding: 0.5%;
+  align-items:center;
+  margin-top: 10px;
+
+  /* min-height: 49px;
+  max-height: 49px; */
+}
+.siteContainer{
+  max-width: 1000px;
+  padding-left: 10%;
+  position: static;
+}
+.threadsContainer{
+  /* position:relative;
+  max-width: 1000px; */
+  width: 50%;
+  margin: 0 auto;
+}
+.categories{
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  row-gap: 10px;
 }

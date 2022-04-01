@@ -1,6 +1,7 @@
 [
     {
         "username":"John1",
+        "userID": 1,
         "password": "112233",
         "email": "John@Mail.com",
         "pfp": "/files/pfp/john.jpg",
@@ -10,6 +11,7 @@
     },
     {
         "username":"jane1",
+        "userID": 2,
         "password": "123123",
         "email": "Jane@Mail.com",
         "pfp": "/files/pfp/Jane.jpg",
