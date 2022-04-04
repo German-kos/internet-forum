@@ -23,7 +23,6 @@ function ThreadsList() {
   const handleClick = (e, thrd) => {
     console.log(thrd);
     return navigate(`/categories/${params.categoryID}/${thrd.threadID}`);
-    return navigate(`/categories/1/1`);
   };
   return (
     <div className="threadsContainer">
