@@ -9,105 +9,25 @@ import Typography from "@mui/material/Typography";
 import Loading from "../Loading";
 import { useNavigate } from "react-router-dom";
 import { Category } from "@mui/icons-material";
+import { categories, mockThreads, mockComments } from "../../Resources/data";
 function Forums() {
   const [forums, setForums] = useState([]);
   const navigate = useNavigate();
-  if (localStorage.getItem("forums") === null)
-    localStorage.setItem(
-      "forums",
-      JSON.stringify([
-        {
-          category: "General Discussions",
-          id: "generaldiscussions",
-          pic: "/files/Forum-Pictures/discussions.jpg",
-          info: "Talk about anything you want.",
-        },
-        {
-          category: "Music",
-          id: "music",
-          pic: "/files/Forum-Pictures/music.jpg",
-          info: "Enjoy music with others.",
-        },
-        {
-          category: "Hobbies",
-          id: "hobbies",
-          pic: "/files/Forum-Pictures/hobbies.jpg",
-          info: "Share and discover hobbies.",
-        },
-        {
-          category: "Video Games",
-          id: "videogames",
-          pic: "/files/Forum-Pictures/video-games.jpg",
-          info: "For the passion of gamers.",
-        },
-        {
-          category: "Art",
-          id: "art",
-          pic: "/files/Forum-Pictures/art.jpg",
-          info: "Share your creations with the world.",
-        },
-      ])
-    );
-  if (localStorage.getItem("threads") === null)
-    localStorage.setItem(
-      "threads",
-      JSON.stringify([
-        {
-          categoryID: "generaldiscussions",
-          threadID: 1,
-          author: "John1",
-          threadName:"test",
-          content: "Hello World!, from John.",
-          views: 0,
-          comments: 0,
-        },
-        {
-          categoryID: "generaldiscussions",
-          threadID: 2,
-          author: "Jane1",
-          threadName:"test",
-          content: "Hello World! from Jane.",
-          views: 0,
-          comments: 0,
-        },
-        {
-          categoryID: "music",
-          threadID: 3,
-          author: "John1",
-          threadName:"test",
-          content: "Hello Musicians!",
-          views: 0,
-          comments: 0,
-        },
-        {
-          categoryID: "hobbies",
-          threadID: 4,
-          author: "Jane1",
-          threadName:"test",
-          content: "Hello Hobbyists!",
-          views: 0,
-          comments: 0,
-        },
-        {
-          categoryID: "videogames",
-          threadID: 5,
-          author: "John1",
-          threadName:"test",
-          content: "Hello Gamers!",
-          views: 0,
-          comments: 0,
-        },
-        {
-          categoryID: "art",
-          threadID: 6,
-          author: "John1",
-          threadName:"test",
-          content: "Hello Artists!",
-          views: 0,
-          comments: 0,
-        },
-      ])
-    );
+  if (
+    localStorage.getItem("forums") === null ||
+    localStorage.getItem("forums") === undefined
+  )
+    localStorage.setItem("forums", JSON.stringify(categories));
+  if (
+    localStorage.getItem("threads") === null ||
+    localStorage.getItem("threads") === undefined
+  )
+    localStorage.setItem("threads", JSON.stringify(mockThreads));
+  if (
+    localStorage.getItem("comments") === null ||
+    localStorage.getItem("comments") === undefined
+  )
+    localStorage.setItem("comments", JSON.stringify(mockComments));
   useEffect(async () => {
     setForums(JSON.parse(localStorage.getItem("forums")));
   }, []);

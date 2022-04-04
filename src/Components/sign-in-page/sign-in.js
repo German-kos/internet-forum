@@ -47,6 +47,7 @@ function SignIn({ user, setUser }) {
       );
       setUser(tempUser);
       if (tempUser !== undefined && tempUser !== null)
+      delete tempUser.password;
         localStorage.setItem("currUser", JSON.stringify(tempUser));
     });
   };

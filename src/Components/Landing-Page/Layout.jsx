@@ -20,7 +20,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import { Button } from "@mui/material";
 import { Navigate, useNavigate } from "react-router-dom";
 import Greeter from "./greeter";
-import ThreadCard from "../threads/thread-cards";
 import "../../App.css";
 import SiteRouter from "../Site-Router/SiteRouter";
 import {
@@ -28,7 +27,8 @@ import {
   Routes,
   Route,
   Link,
-  BrowserRouter,Outlet
+  BrowserRouter,
+  Outlet,
 } from "react-router-dom";
 import Home from "./Home";
 import SignIn from "../sign-in-page/sign-in";
@@ -95,9 +95,9 @@ function Layout({ user, setUser, users, children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const handleHomeClick = () =>{
+  const handleHomeClick = () => {
     return navigate("/");
-  }
+  };
   const handleSignIn = () => {
     console.log("handleSignIn");
     return user === undefined ? navigate("/login") : navigate("/");
@@ -105,7 +105,7 @@ function Layout({ user, setUser, users, children }) {
   const handleSignOut = () => {
     console.log("handleSignOut");
     localStorage.removeItem("currUser");
-    if(user!==undefined){
+    if (user !== undefined) {
       setUser(undefined);
       return navigate("/");
     }
@@ -196,12 +196,10 @@ function Layout({ user, setUser, users, children }) {
         </Drawer>
         <Main open={open}>
           <DrawerHeader />
-           <div>
-             <Outlet/>
-           </div>
-          <Typography paragraph>
-            
-          </Typography>
+          <div>
+            <Outlet />
+          </div>
+          <Typography paragraph></Typography>
         </Main>
       </Box>
     </div>
