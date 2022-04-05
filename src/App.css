@@ -15,7 +15,7 @@
   padding: 0.5%;
   align-items:center;
   margin-top: 10px;
-
+  white-space: pre-wrap;
   /* min-height: 49px;
   max-height: 49px; */
 }

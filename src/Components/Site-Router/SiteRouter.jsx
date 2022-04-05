@@ -15,15 +15,11 @@ function SiteRouter({ user, setUser, users }) {
       <Routes>
         <Route element={<Layout user={user} setUser={setUser} users={users} />}>
           <Route index element={<Forums />} />
-          <Route
-            path="/categories/:categoryID"
-            element={<ThreadsList />}
-          ></Route>
+          <Route path="/categories/:categoryID" element={<ThreadsList />} />
           <Route
             path="/categories/:categoryID/:threadID"
-            element={<Threads />}
+            element={<Threads user={user} />}
           />
-          {/* <Route path="/categories/1/1" element={<Threads />} /> */}
           <Route
             path="/profile"
             element={
