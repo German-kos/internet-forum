@@ -8,12 +8,15 @@ import Forums from "../Forum/Forums";
 import ThreadsList from "../Forum/ThreadsList";
 import Threads from "../Forum/Threads";
 import Loading from "../Loading";
+import LayoutTest from "../Landing-Page/Layout-test";
 
 function SiteRouter({ user, setUser, users }) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout user={user} setUser={setUser} users={users} />}>
+        <Route
+          element={<LayoutTest user={user} setUser={setUser} users={users} />}
+        >
           <Route index element={<Forums />} />
           <Route path="/categories/:categoryID" element={<ThreadsList />} />
           <Route

@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import { getAllComments, getComments } from "../../Resources/functions";
+import "../../App.css";
 function CommentField({ user, params, setComments }) {
   let comments = getAllComments();
   const handleSubmit = (e) => {
@@ -23,9 +24,10 @@ function CommentField({ user, params, setComments }) {
   //   const currUser = JSON.parse(localStorage.getItem("currUser"));
   if (user !== undefined) {
     return (
-      <div>
+      <div className="commentField">
         <form onSubmit={handleSubmit}>
           <TextField
+            className="textField"
             multiline
             rows={10}
             inputProps={{ maxLength: 200 }}

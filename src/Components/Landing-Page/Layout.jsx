@@ -109,9 +109,6 @@ function Layout({ user, setUser, users, children }) {
       setUser(undefined);
       return navigate("/");
     }
-    // return user !== undefined
-    //   ? setUser(undefined) && navigate("/") && console.log(user)
-    //   : navigate("/");
   };
   const handleProfileClick = () => {
     console.log("handleProfileClick");
