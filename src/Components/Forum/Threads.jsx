@@ -16,22 +16,26 @@ function Threads({ user }) {
   const [allComments, setAllComments] = useState();
   const [comments, setComments] = useState();
   const params = useParams();
-  let temp;
+  // let temp;
   useEffect(() => {
     setThread(getThreads(params));
     setComments(getComments(params));
+    setAllComments(getAllComments());
   }, []);
   useEffect(() => {
-    setAllComments(getAllComments());
-  }, [temp]);
+    setComments(getComments(params));
+    console.log("all comments changed");
+  }, [allComments]);
 
   const removeComment = (e) => {
-    temp = allComments.filter(function (x) {
+    //add SweetAlert2 or something for validation
+    console.log(e);
+    let temp = allComments.filter(function (x) {
       return x.commentID !== e.commentID;
     });
-    setAllComments(temp);
     console.log(allComments);
-    localStorage.setItem("comments", JSON.stringify(allComments));
+    localStorage.setItem("comments", JSON.stringify(temp));
+    return setAllComments(temp);
   };
   return (
     <div className="threadsContainer">
@@ -66,7 +70,14 @@ function Threads({ user }) {
         );
       })}
       <div>
-        {<CommentField user={user} params={params} setComments={setComments} />}
+        {
+          <CommentField
+            user={user}
+            params={params}
+            setComments={setComments}
+            setAllComments={setAllComments}
+          />
+        }
       </div>
     </div>
   );
