@@ -53,7 +53,7 @@ function Threads({ user }) {
             <div className="commentUserInfo">
               <Avatar src={userPfp(comment.author)} />
               {comment.author}
-              {user?.username === comment.author ? (
+              {user?.username.toLowerCase() === comment.author.toLowerCase() ? (
                 <div style={{ flex: 1 }}>
                   <IconButton
                     sx={{ float: "right", color: "gray" }}
