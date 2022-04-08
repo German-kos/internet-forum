@@ -5,8 +5,6 @@ function CommentField({ user, params, setComments }) {
   let comments = getAllComments();
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(e.target[0].value.trim().length);
-    // console.log(comments);
     if (e.target[0].value.trim().length > 0) {
       comments.push({
         threadID: parseInt(params.threadID),

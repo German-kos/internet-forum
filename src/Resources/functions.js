@@ -20,3 +20,6 @@ export const getComments = (params) => {
 export const getAllComments = () => {
   return JSON.parse(localStorage.getItem("comments"));
 };
+const getLoggedUser = () => {
+  return JSON.parse(localStorage.getItem);
+};

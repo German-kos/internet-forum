@@ -46,9 +46,10 @@ function SignIn({ user, setUser }) {
           obj.password === e.target[2].value
       );
       setUser(tempUser);
-      if (tempUser !== undefined && tempUser !== null)
-      delete tempUser.password;
+      if (tempUser !== undefined && tempUser !== null) {
+        delete tempUser.password;
         localStorage.setItem("currUser", JSON.stringify(tempUser));
+      }
     });
   };
 

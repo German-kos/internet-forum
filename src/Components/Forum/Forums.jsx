@@ -10,6 +10,7 @@ import Loading from "../Loading";
 import { useNavigate } from "react-router-dom";
 import { Category } from "@mui/icons-material";
 import { categories, mockThreads, mockComments } from "../../Resources/data";
+
 function Forums() {
   const [forums, setForums] = useState([]);
   const navigate = useNavigate();
