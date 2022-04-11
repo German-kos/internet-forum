@@ -45,10 +45,11 @@ function CommentField({ user, params, setComments, setAllComments }) {
               // e.preventDefault() &&
               // false
             }
+            required
           />
-          {/* <textarea
-          /> */}
-          <button type="submit">Post</button>
+          <div style={{ float: "right", paddingTop: 5, paddingRight: 3 }}>
+            <button type="submit">Post</button>
+          </div>
         </form>
       </div>
     );

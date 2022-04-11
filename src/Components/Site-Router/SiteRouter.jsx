@@ -9,8 +9,14 @@ import ThreadsList from "../Forum/ThreadsList";
 import Threads from "../Forum/Threads";
 import Loading from "../Loading";
 import LayoutTest from "../Landing-Page/Layout-test";
+import { useEffect, useState } from "react";
+import { getLoggedUser } from "../../Resources/functions";
 
 function SiteRouter({ user, setUser, users }) {
+  const [currUser, setCurrUser] = useState();
+  useEffect(() => {
+    setCurrUser(getLoggedUser());
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
@@ -18,7 +24,10 @@ function SiteRouter({ user, setUser, users }) {
           element={<LayoutTest user={user} setUser={setUser} users={users} />}
         >
           <Route index element={<Forums />} />
-          <Route path="/categories/:categoryID" element={<ThreadsList />} />
+          <Route
+            path="/categories/:categoryID"
+            element={<ThreadsList user={user} />}
+          />
           <Route
             path="/categories/:categoryID/:threadID"
             element={<Threads user={user} />}
@@ -26,10 +35,20 @@ function SiteRouter({ user, setUser, users }) {
           <Route
             path="/profile"
             element={
-              localStorage.getItem("currUser") === null ? (
+              currUser === null ? (
                 <Navigate to="/login" />
               ) : (
                 <PublicProfileCard user={user} setUser={setUser} />
+              )
+            }
+          />
+          <Route
+            path="/test"
+            element={
+              currUser === null ? (
+                <Navigate to="login" />
+              ) : (
+                <PublicProfileCard user={user} />
               )
             }
           />
