@@ -2,27 +2,18 @@ import { Routes, Route, Link, BrowserRouter, Navigate } from "react-router-dom";
 import SignIn from "../sign-in-page/sign-in";
 import PublicProfileCard from "../Profile/PublicProfileCard";
 import PublicProfileOthers from "../Profile/PublicProfileOthers";
-import Home from "../Landing-Page/Home.jsx";
 import Layout from "../Landing-Page/Layout";
 import Forums from "../Forum/Forums";
 import ThreadsList from "../Forum/ThreadsList";
 import Threads from "../Forum/Threads";
-import Loading from "../Loading";
-import LayoutTest from "../Landing-Page/Layout-test";
-import { useEffect, useState } from "react";
-import { getLoggedUser } from "../../Resources/functions";
+import Loading from "../../Resources/Loading";
+// import LayoutTest from "../Landing-Page/Layout";
 
 function SiteRouter({ user, setUser, users }) {
-  const [currUser, setCurrUser] = useState();
-  useEffect(() => {
-    setCurrUser(getLoggedUser());
-  }, []);
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          element={<LayoutTest user={user} setUser={setUser} users={users} />}
-        >
+        <Route element={<Layout user={user} setUser={setUser} users={users} />}>
           <Route index element={<Forums />} />
           <Route
             path="/categories/:categoryID"
@@ -35,23 +26,14 @@ function SiteRouter({ user, setUser, users }) {
           <Route
             path="/profile"
             element={
-              currUser === null ? (
+              user === null ? (
                 <Navigate to="/login" />
               ) : (
                 <PublicProfileCard user={user} setUser={setUser} />
               )
             }
           />
-          <Route
-            path="/test"
-            element={
-              currUser === null ? (
-                <Navigate to="login" />
-              ) : (
-                <PublicProfileCard user={user} />
-              )
-            }
-          />
+
           <Route path="/user" element={<Navigate to="/" />} />
           <Route path={`/user/:userID`} element={<PublicProfileOthers />} />
         </Route>

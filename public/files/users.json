@@ -1,16 +1,26 @@
 [
     {
-        "username":"John1",
+        "username": "Administrator",
+        "userID": 0,
+        "password": "112233",
+        "email": "Administrator@Mail.com",
+        "pfp": "/files/pfp/default.jpg",
+        "admin": true,
+        "fname": "Admin",
+        "lname": "Admin"
+    },
+    {
+        "username": "John1",
         "userID": 1,
         "password": "112233",
         "email": "John@Mail.com",
         "pfp": "/files/pfp/john.jpg",
-        "admin": true,
+        "admin": false,
         "fname": "John",
         "lname": "Doe"
     },
     {
-        "username":"jane1",
+        "username": "jane1",
         "userID": 2,
         "password": "123123",
         "email": "Jane@Mail.com",

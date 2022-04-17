@@ -1,36 +1,36 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Loading from "../Loading";
+import Loading from "../../Resources/Loading";
 import { useNavigate } from "react-router-dom";
-import { Category } from "@mui/icons-material";
 import { categories, mockThreads, mockComments } from "../../Resources/data";
 
 function Forums() {
   const [forums, setForums] = useState([]);
   const navigate = useNavigate();
-  if (
-    localStorage.getItem("forums") === null ||
-    localStorage.getItem("forums") === undefined
-  )
-    localStorage.setItem("forums", JSON.stringify(categories));
-  if (
-    localStorage.getItem("threads") === null ||
-    localStorage.getItem("threads") === undefined
-  )
-    localStorage.setItem("threads", JSON.stringify(mockThreads));
-  if (
-    localStorage.getItem("comments") === null ||
-    localStorage.getItem("comments") === undefined
-  )
-    localStorage.setItem("comments", JSON.stringify(mockComments));
-  useEffect(async () => {
+  useEffect(() => {
     setForums(JSON.parse(localStorage.getItem("forums")));
+    if (
+      localStorage.getItem("forums") === null ||
+      localStorage.getItem("forums") === undefined
+    ) {
+      localStorage.setItem("forums", JSON.stringify(categories));
+    }
+    if (
+      localStorage.getItem("threads") === null ||
+      localStorage.getItem("threads") === undefined
+    ) {
+      localStorage.setItem("threads", JSON.stringify(mockThreads));
+    }
+    if (
+      localStorage.getItem("comments") === null ||
+      localStorage.getItem("comments") === undefined
+    ) {
+      localStorage.setItem("comments", JSON.stringify(mockComments));
+    }
   }, []);
   const handleClick = (e, eCategory) => {
     console.log(eCategory.id);

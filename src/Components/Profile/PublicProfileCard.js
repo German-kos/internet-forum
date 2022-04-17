@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import PersistentDrawerLeft from "../Landing-Page/Layout";
+import PersistentDrawerLeft from "../Landing-Page/Layout-delete";
 
 function PublicProfileCard({ user, setUser }) {
   useEffect(() => {

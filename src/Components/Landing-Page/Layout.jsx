@@ -1,109 +1,42 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { Button } from "@mui/material";
-import { Navigate, useNavigate } from "react-router-dom";
-import Greeter from "./greeter";
+import { useNavigate, Outlet } from "react-router-dom";
 import "../../App.css";
-import SiteRouter from "../Site-Router/SiteRouter";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  BrowserRouter,
-  Outlet,
-} from "react-router-dom";
-import Home from "./Home";
-import SignIn from "../sign-in-page/sign-in";
-import PublicProfileOthers from "../Profile/PublicProfileOthers";
-import PublicProfileCard from "../Profile/PublicProfileCard";
-
-const drawerWidth = 240;
-
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(["margin", "width"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
-}));
-//
-//
+import MenuIcon from "@mui/icons-material/Menu";
+import { IconButton, AppBar, Toolbar, Typography } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import Greeter from "./greeter";
 //
 function Layout({ user, setUser, users, children }) {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+  const closeDrawer = () => setState({ ...state, left: false });
+  const drawerWidth = 240;
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    setState({ ...state, [anchor]: open });
+  };
   const navigate = useNavigate();
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  const handleHomeClick = () => {
+  const handleHomeClick = (e) => {
+    closeDrawer();
     return navigate("/");
   };
   const handleSignIn = () => {
-    console.log("handleSignIn");
     return user === undefined ? navigate("/login") : navigate("/");
   };
   const handleSignOut = () => {
-    console.log("handleSignOut");
     localStorage.removeItem("currUser");
     if (user !== undefined) {
       setUser(undefined);
@@ -111,22 +44,28 @@ function Layout({ user, setUser, users, children }) {
     }
   };
   const handleProfileClick = () => {
-    console.log("handleProfileClick");
+    closeDrawer();
     return user === undefined ? navigate("/login") : navigate("/profile");
   };
 
   return (
-    <div>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar position="fixed" open={open}>
+    <>
+      <div>
+        <AppBar position="fixed">
           <Toolbar>
             <IconButton
               color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
+              aria-label="Menu"
+              onClick={toggleDrawer("left", true)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="Menu"
+              onClick={toggleDrawer("left", true)}
               edge="start"
-              sx={{ mr: 2, ...(open && { display: "none" }) }}
+              sx={{ mr: 2, ...{ display: "none" } }}
             >
               <MenuIcon />
             </IconButton>
@@ -143,11 +82,11 @@ function Layout({ user, setUser, users, children }) {
                   Sign Out
                 </Button>
               )}
-              {/* <Button variant="contained" onClick={() =>console.log(user)}>check me</Button> */}{" "}
-              {/*check user state*/}
             </div>
           </Toolbar>
         </AppBar>
+      </div>
+      <div>
         <Drawer
           sx={{
             width: drawerWidth,
@@ -157,21 +96,14 @@ function Layout({ user, setUser, users, children }) {
               boxSizing: "border-box",
             },
           }}
-          variant="persistent"
           anchor="left"
-          open={open}
+          open={state["left"]}
+          onClose={toggleDrawer("left", false)}
         >
-          <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "ltr" ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
-          </DrawerHeader>
-          <Divider />
           <List>
+            <ListItem button onClick={toggleDrawer("left", false)}>
+              <ArrowBackIosIcon />
+            </ListItem>
             <ListItem button onClick={handleHomeClick}>
               Home
             </ListItem>
@@ -179,28 +111,12 @@ function Layout({ user, setUser, users, children }) {
               Profile
             </ListItem>
           </List>
-          <Divider />
-          <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
         </Drawer>
-        <Main open={open}>
-          <DrawerHeader />
-          <div>
-            <Outlet />
-          </div>
-          <Typography paragraph></Typography>
-        </Main>
-      </Box>
-    </div>
+      </div>
+      <div style={{ paddingTop: 100 }}>
+        <Outlet />
+      </div>
+    </>
   );
 }
-
 export default Layout;

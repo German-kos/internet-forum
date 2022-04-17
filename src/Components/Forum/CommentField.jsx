@@ -1,32 +1,71 @@
 import { TextField } from "@mui/material";
-import { getAllComments, getComments } from "../../Resources/functions";
+import {
+  getAllComments,
+  getAllThreads,
+  getComments,
+  calcCommentPageCount,
+} from "../../Resources/functions";
 import "../../App.css";
-function CommentField({ user, params, setComments, setAllComments }) {
+function CommentField({
+  user,
+  params,
+  setComments,
+  setAllComments,
+  page,
+  setPage,
+  pageCount,
+  postsPerPage,
+}) {
+  const calcCommentPageCount = () => {
+    return Math.ceil(getComments(params).length / postsPerPage);
+  };
+
   let comments = getAllComments();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (e.target[0].value.trim().length > 0) {
+      // const tempPage = pageCount;
+      // console.log("first:" + pageCount);
+      const options = {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: false,
+        timeZone: "Israel",
+      };
+      const date = new Date();
       comments.push({
         threadID: parseInt(params.threadID),
         commentID: comments[comments.length - 1].commentID + 1,
         author: user.username,
         comment: e.target[0].value,
+        time: new Intl.DateTimeFormat("en-GB", options).format(date),
       });
-      console.log(comments);
-      //   window.location.reload();
+      // console.log(comments);
       localStorage.setItem("comments", JSON.stringify(comments));
       setAllComments(comments);
-      setComments(getComments(params));
       e.target[0].value = "";
+      // console.log(params);
+      let tempThreads = getAllThreads();
+      const threadIndex = tempThreads.findIndex(
+        (x) => x.threadID === parseInt(params.threadID)
+      );
+      tempThreads[threadIndex].comments += 1;
+      localStorage.setItem("threads", JSON.stringify(tempThreads));
+      setComments(getComments(params));
+      // console.log(comments);
+      if (calcCommentPageCount() > pageCount) setPage(calcCommentPageCount());
+      else if (page !== calcCommentPageCount) setPage(calcCommentPageCount());
     }
   };
   const validateLines = (e) => {
-    if (e.target.value?.match(/\n/g)?.length > 10 && e.key === "Enter") {
+    if (e.target.value?.match(/\n/g)?.length > 8 && e.key === "Enter") {
       e.preventDefault();
       return false;
     }
   };
-  //   const currUser = JSON.parse(localStorage.getItem("currUser"));
   if (user !== undefined) {
     return (
       <div className="commentField">
@@ -36,15 +75,7 @@ function CommentField({ user, params, setComments, setAllComments }) {
             multiline
             rows={5}
             inputProps={{ maxLength: 200 }}
-            onKeyPress={
-              validateLines
-              // (e) =>
-              // console.log(e.target.value.match(/\n/g).length) &&
-              // e.target.value?.match(/\n/g).length > 10 &&
-              // e.key === "Enter" &&
-              // e.preventDefault() &&
-              // false
-            }
+            onKeyPress={validateLines}
             required
           />
           <div style={{ float: "right", paddingTop: 5, paddingRight: 3 }}>

@@ -7,7 +7,7 @@
   margin-left: 10px;
 }
 .threadCards {
-  display: flex;
+  /* display: flex;
   border: 1px solid rgb(48, 48, 48);
   border-radius: 22px;
   font-weight: bolder;
@@ -15,9 +15,33 @@
   padding: 0.5%;
   align-items: center;
   margin-top: 10px;
-  white-space: pre-wrap;
-  /* min-height: 49px;
-  max-height: 49px; */
+  white-space: pre-wrap; */
+  background-color: rgb(128, 128, 128, 0.2);
+  margin-bottom: 10px;
+  padding: 5px 5px 5px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 2.5px 7.5px;
+  min-width: 500px;
+  max-width: 800px;
+  transition-duration: 0.2s;
+  transform: scale(1);
+  backface-visibility: hidden;
+}
+.threadCards:hover {
+  backface-visibility: hidden;
+  cursor: pointer;
+  transform: scale(1.01);
+  transition-duration: 0.2s;
+  box-shadow: rgba(3, 0, 175, 0.35) 0px 2.5px 7.5px;
+}
+.threadCardUserInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3px;
+}
+.threadCardTitle {
+  font-size: larger;
+  font-weight: bolder;
 }
 .siteContainer {
   max-width: 1000px;
@@ -59,7 +83,7 @@
 .commentCard {
   background-color: rgb(128, 128, 128, 0.2);
   margin-bottom: 3%;
-  padding: 5px 5px 20px;
+  padding: 5px 5px 5px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 2.5px 7.5px;
   min-width: 500px;
@@ -76,6 +100,8 @@
 .commentContent {
   padding-top: 5px;
   white-space: pre-wrap;
+  margin-bottom: 5px;
+  min-height: 30px;
 }
 .commentAuthor {
   font-weight: bolder;
@@ -89,4 +115,12 @@
 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
   background-color: #6d6d6d;
   border: #6d6d6d;
+}
+.timePosted {
+  /* display: flex; */
+  padding-right: 5px;
+  align-items: center;
+  font-size: smaller;
+  color: gray;
+  margin-left: auto;
 }

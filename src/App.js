@@ -21,7 +21,7 @@ function App() {
     });
     checkForUser();
     //
-    console.log(recieveData);
+    // console.log(recieveData);
     setUsers(recieveData);
     // if(localStorage.getItem("users") === null)
     localStorage.setItem("usersList", JSON.stringify(recieveData));
