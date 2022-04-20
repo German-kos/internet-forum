@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, AppBar, Toolbar, Typography } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Greeter from "./greeter";
+import SearchBar from "../Forum/SearchBar";
 //
 function Layout({ user, setUser, users, children }) {
   const [state, setState] = React.useState({
@@ -72,6 +73,9 @@ function Layout({ user, setUser, users, children }) {
             <Typography variant="h6" noWrap component="div">
               <Greeter user={user} />
             </Typography>
+            <div>
+              <SearchBar />
+            </div>
             <div style={{ float: "right", marginLeft: "auto" }}>
               {user === undefined ? (
                 <Button variant="contained" onClick={handleSignIn}>

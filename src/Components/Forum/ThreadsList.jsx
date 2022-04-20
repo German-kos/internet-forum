@@ -59,7 +59,6 @@ function ThreadsList({ user }) {
   };
   const handleClick = (e, thread) => {
     let tempThreads = getAllThreads();
-    console.log(tempThreads);
     const threadIndex = tempThreads.findIndex(
       (x) => x.threadID === thread.threadID
     );
@@ -104,7 +103,6 @@ function ThreadsList({ user }) {
   };
   return (
     <>
-      <button onClick={() => console.log(currentThreads)}>click</button>
       <NewThread
         user={user}
         handleClickOpen={handleClickOpen}
@@ -113,9 +111,9 @@ function ThreadsList({ user }) {
         setAllThreads={setAllThreads}
         allThreads={allThreads}
         params={params}
+        currentThreads={currentThreads}
         setCurrentThreads={setCurrentThreads}
         setPageCount={setPageCount}
-        currentThreads={currentThreads}
         postsPerPage={postsPerPage}
       />
       <div>
@@ -170,16 +168,9 @@ function ThreadsList({ user }) {
                 Posted: {thread.time}
                 <div
                   style={{
-                    display: "inline-block",
+                    display: "flex",
                     float: "right",
-                    // flex: 1,
-                    // // fontSize: "normal",
-                    // // textAlign: "center",
-                    // // alignItems: "center",
-                    // float: "right",
-                    // maxHeight: "10px",
-                    // margin: "auto",
-                    // paddingBottom: "5px",
+                    alignItems: "center",
                   }}
                 >
                   <VisibilityIcon fontSize="small" sx={{ color: "gray" }} />{" "}

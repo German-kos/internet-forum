@@ -13,4 +13,4 @@ function PublicProfileCard({ user, setUser }) {
     </div>
   );
 }
-export default PublicProfileCard;
+// export default PublicProfileCard;

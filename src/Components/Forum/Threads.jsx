@@ -1,5 +1,5 @@
 import { Avatar, Divider, IconButton } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import "../../App.css";
 import { userPfp } from "../../Resources/functions";
 import CommentField from "./CommentField";
@@ -20,6 +20,7 @@ function Threads({ user }) {
   const [thread, setThread] = useState();
   const [allComments, setAllComments] = useState();
   const [comments, setComments] = useState();
+  const [test, setTest] = useState();
   const params = useParams();
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
@@ -27,7 +28,11 @@ function Threads({ user }) {
   const postsPerPage = 5;
   const lastPost = page * postsPerPage;
   const firstPost = lastPost - postsPerPage;
+  const location = useLocation();
   //
+  useEffect(() => {
+    setTest(params);
+  }, [params]);
   useEffect(() => {
     setThread(getThreads(params));
     setAllComments(getAllComments());
@@ -46,7 +51,7 @@ function Threads({ user }) {
   //
   const removeComment = (e) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: "Are you sure you want to remove your comment?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
@@ -60,6 +65,7 @@ function Threads({ user }) {
         });
         localStorage.setItem("comments", JSON.stringify(temp));
         setAllComments(temp);
+        setComments(getComments(params));
         let tempThreads = getAllThreads();
         const threadIndex = tempThreads.findIndex(
           (x) => x.threadID === parseInt(params.threadID)
@@ -71,7 +77,6 @@ function Threads({ user }) {
   };
   //
   const handleChange = (e, value) => {
-    // console.log(e.target.length);
     setPage(value);
   };
   //
@@ -94,46 +99,38 @@ function Threads({ user }) {
           <div className="timePosted">Posted: {thread?.time}</div>
         </div>
       ) : null}
-      {/* {allComments?.map((comment, i) => { */}
-      {comments
-        ?.slice(
-          firstPost,
-          lastPost
-          // page > 2 ? firstPost + 1 : firstPost,
-          // page > 1 ? lastPost + 1 : lastPost
-        )
-        .map((comment, i) => {
-          if (comment?.threadID === parseInt(params.threadID)) {
-            return (
-              <div key={i} className={"commentCard"}>
-                <div className="commentUserInfo">
-                  <Avatar src={userPfp(comment.author)} />
-                  <div
-                    className="commentAuthor"
-                    onClick={() => handleUserClick(comment.author)}
-                  >
-                    {comment.author}
-                  </div>
-                  {user?.username.toLowerCase() ===
-                    comment.author.toLowerCase() || user?.admin ? (
-                    <div style={{ flex: 1 }}>
-                      <IconButton
-                        sx={{ float: "right", color: "gray" }}
-                        onClick={() => removeComment(comment)}
-                      >
-                        <ClearIcon sx={{ opacity: 0.5 }} />
-                      </IconButton>
-                    </div>
-                  ) : null}
+      {comments?.slice(firstPost, lastPost).map((comment, i) => {
+        if (comment?.threadID === parseInt(params.threadID)) {
+          return (
+            <div key={i} className={"commentCard"}>
+              <div className="commentUserInfo">
+                <Avatar src={userPfp(comment.author)} />
+                <div
+                  className="commentAuthor"
+                  onClick={() => handleUserClick(comment.author)}
+                >
+                  {comment.author}
                 </div>
-                <Divider />
-                <div className="commentContent">{comment.comment}</div>
-                <Divider />
-                <div className="timePosted">Posted: {comment.time}</div>
+                {user?.username.toLowerCase() ===
+                  comment.author.toLowerCase() || user?.admin ? (
+                  <div style={{ flex: 1 }}>
+                    <IconButton
+                      sx={{ float: "right", color: "gray" }}
+                      onClick={() => removeComment(comment)}
+                    >
+                      <ClearIcon sx={{ opacity: 0.5 }} />
+                    </IconButton>
+                  </div>
+                ) : null}
               </div>
-            );
-          }
-        })}
+              <Divider />
+              <div className="commentContent">{comment.comment}</div>
+              <Divider />
+              <div className="timePosted">Posted: {comment.time}</div>
+            </div>
+          );
+        }
+      })}
       <div>
         {
           <CommentField

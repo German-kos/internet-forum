@@ -124,3 +124,22 @@
   color: gray;
   margin-left: auto;
 }
+.profileContainer {
+  /* display: flex; */
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: lightgray;
+  background-color: rgb(128, 128, 128, 0.2);
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 5px 5px 5px 5px;
+}
+.profileContainerAvatar {
+  display: flex;
+  /* padding-left: 5px; */
+  align-items: center;
+
+  /* margin-left: 5px; */
+  gap: 5px;
+}

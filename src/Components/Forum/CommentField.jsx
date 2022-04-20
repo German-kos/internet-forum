@@ -24,8 +24,6 @@ function CommentField({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (e.target[0].value.trim().length > 0) {
-      // const tempPage = pageCount;
-      // console.log("first:" + pageCount);
       const options = {
         year: "numeric",
         month: "numeric",
@@ -43,11 +41,9 @@ function CommentField({
         comment: e.target[0].value,
         time: new Intl.DateTimeFormat("en-GB", options).format(date),
       });
-      // console.log(comments);
       localStorage.setItem("comments", JSON.stringify(comments));
       setAllComments(comments);
       e.target[0].value = "";
-      // console.log(params);
       let tempThreads = getAllThreads();
       const threadIndex = tempThreads.findIndex(
         (x) => x.threadID === parseInt(params.threadID)
@@ -55,7 +51,6 @@ function CommentField({
       tempThreads[threadIndex].comments += 1;
       localStorage.setItem("threads", JSON.stringify(tempThreads));
       setComments(getComments(params));
-      // console.log(comments);
       if (calcCommentPageCount() > pageCount) setPage(calcCommentPageCount());
       else if (page !== calcCommentPageCount) setPage(calcCommentPageCount());
     }

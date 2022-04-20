@@ -1,6 +1,7 @@
 import { Routes, Route, Link, BrowserRouter, Navigate } from "react-router-dom";
 import SignIn from "../sign-in-page/sign-in";
-import PublicProfileCard from "../Profile/PublicProfileCard";
+// import PublicProfileCard from "../Profile/PublicProfileCard";
+import PersonalProfileCard from "../Profile/PersonalProfileCard";
 import PublicProfileOthers from "../Profile/PublicProfileOthers";
 import Layout from "../Landing-Page/Layout";
 import Forums from "../Forum/Forums";
@@ -29,7 +30,7 @@ function SiteRouter({ user, setUser, users }) {
               user === null ? (
                 <Navigate to="/login" />
               ) : (
-                <PublicProfileCard user={user} setUser={setUser} />
+                <PersonalProfileCard user={user} />
               )
             }
           />
