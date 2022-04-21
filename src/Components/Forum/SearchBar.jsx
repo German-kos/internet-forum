@@ -14,16 +14,15 @@ export default function SearchBar() {
   }, []);
   //
   const handleChange = (e) => {
-    console.log(e.target.value);
     setInput(e.target.value);
   };
   const handleClick = (val) => {
-    return (
-      navigate(`./categories/${val.categoryID}/${val.threadID}`, {
-        test: { categoryID: val.categoryID, threadID: val.threadID },
-      }),
-      window.location.reload(false)
-    );
+    return navigate(`/categories/${val.categoryID}/${val.threadID}`);
+    // , {
+    // test: { categoryID: val.categoryID, threadID: val.threadID },
+    // });
+    // ,
+    // window.location.reload(false)
   };
   return (
     <>

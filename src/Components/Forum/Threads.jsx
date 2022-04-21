@@ -28,7 +28,6 @@ function Threads({ user }) {
   const postsPerPage = 5;
   const lastPost = page * postsPerPage;
   const firstPost = lastPost - postsPerPage;
-  const location = useLocation();
   //
   useEffect(() => {
     setTest(params);
@@ -80,6 +79,7 @@ function Threads({ user }) {
     setPage(value);
   };
   //
+  console.log(comments);
   return (
     <div className="threadsContainer">
       {page === 1 ? (
