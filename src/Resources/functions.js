@@ -4,6 +4,12 @@ export const userPfp = (user) => {
     (obj) => obj?.username.toLowerCase() === user?.toLowerCase()
   )?.pfp;
 };
+export const getCurrentThread = (id) => {
+  // get a thread for the corresponding id passed
+  return JSON.parse(localStorage.getItem("threads")).find(
+    (thread) => thread.threadID === parseInt(id)
+  );
+};
 export const getThreads = (params) => {
   return JSON.parse(localStorage.getItem("threads")).find(
     (obj) => obj.threadID === parseInt(params.threadID)
@@ -24,6 +30,15 @@ export const getComments = (params) => {
   return JSON.parse(localStorage.getItem("comments"))
     .map((item) => {
       if (item.threadID === parseInt(params.threadID)) return item;
+    })
+    .filter(function (x) {
+      return x !== undefined;
+    });
+};
+export const getCommentsByThreadID = (id) => {
+  return JSON.parse(localStorage.getItem("comments"))
+    .map((item) => {
+      if (item.threadID === parseInt(id)) return item;
     })
     .filter(function (x) {
       return x !== undefined;
@@ -51,4 +66,13 @@ export const validateLines = (e) => {
     e.preventDefault();
     return false;
   }
+};
+export const addViewsToThread = (thread) => {
+  //pass thread obj to add a view to it
+  let tempThreads = getAllThreads();
+  const threadIndex = tempThreads.findIndex(
+    (x) => x.threadID === thread.threadID
+  );
+  tempThreads[threadIndex].views += 1;
+  localStorage.setItem("threads", JSON.stringify(tempThreads));
 };

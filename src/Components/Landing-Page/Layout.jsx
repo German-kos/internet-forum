@@ -8,8 +8,12 @@ import "../../App.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, AppBar, Toolbar, Typography } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import Greeter from "./greeter";
+import Greeter from "./Greeter";
 import SearchBar from "../Forum/SearchBar";
+import { useContext } from "react";
+import { ThreadContextProvider } from "../../Resources/Context-Providers/ThreadContextProvider";
+//
+const ThreadContext = React.createContext();
 //
 function Layout({ user, setUser, users, children }) {
   const [state, setState] = React.useState({
@@ -50,7 +54,7 @@ function Layout({ user, setUser, users, children }) {
   };
 
   return (
-    <>
+    <ThreadContextProvider>
       <div>
         <AppBar position="fixed">
           <Toolbar>
@@ -120,7 +124,7 @@ function Layout({ user, setUser, users, children }) {
       <div style={{ paddingTop: 100 }}>
         <Outlet />
       </div>
-    </>
+    </ThreadContextProvider>
   );
 }
 export default Layout;

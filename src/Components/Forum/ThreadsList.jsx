@@ -11,6 +11,7 @@ import {
   getAllThreadsByCategoryID,
   getAllComments,
   getUserID,
+  addViewsToThread,
 } from "../../Resources/functions";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
@@ -58,12 +59,7 @@ function ThreadsList({ user }) {
     ).pfp;
   };
   const handleClick = (e, thread) => {
-    let tempThreads = getAllThreads();
-    const threadIndex = tempThreads.findIndex(
-      (x) => x.threadID === thread.threadID
-    );
-    tempThreads[threadIndex].views += 1;
-    localStorage.setItem("threads", JSON.stringify(tempThreads));
+    addViewsToThread(thread);
     return navigate(`/categories/${params.categoryID}/${thread.threadID}`);
   };
   const handleChange = (e, value) => {

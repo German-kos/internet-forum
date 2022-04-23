@@ -1,48 +1,53 @@
 import * as React from "react";
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import Autocomplete from "@mui/material/Autocomplete";
-import { useEffect, useState } from "react";
-import { getAllThreads } from "../../Resources/functions";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { addViewsToThread, getAllThreads } from "../../Resources/functions";
+import { useNavigate } from "react-router-dom";
+import {
+  ThreadUpdateContext,
+  CommentsUpdateContext,
+} from "../../Resources/Context-Providers/ThreadContextProvider";
 export default function SearchBar() {
   const [allThreads, setAllThreads] = useState();
   const [input, setInput] = useState();
+  const [results, setResults] = useState();
   const navigate = useNavigate();
+  const commentsUpdate = useContext(CommentsUpdateContext);
+  const threadUpdateContext = useContext(ThreadUpdateContext);
   useEffect(() => {
     setAllThreads(getAllThreads());
   }, []);
   //
   const handleChange = (e) => {
     setInput(e.target.value);
+    let resultsTemp = [];
+    resultsTemp = allThreads?.map((val) => {
+      if (e.target.value === "") return null;
+      else if (
+        val?.threadName.toLowerCase().includes(e.target.value.toLowerCase())
+      ) {
+        resultsTemp.push(
+          <li key={val.threadID} onClick={() => handleClick(e, val)}>
+            {val.threadName}
+          </li>
+        );
+      }
+      setResults(resultsTemp);
+    });
   };
-  const handleClick = (val) => {
+  const handleClick = (e, val) => {
+    e.target.value = "";
+    setInput("");
+    commentsUpdate(val.threadID);
+    threadUpdateContext(val.threadID);
+    addViewsToThread(val);
     return navigate(`/categories/${val.categoryID}/${val.threadID}`);
-    // , {
-    // test: { categoryID: val.categoryID, threadID: val.threadID },
-    // });
-    // ,
-    // window.location.reload(false)
   };
   return (
     <>
       <form onChange={handleChange}>
         <input type="text" />
-        <ul>
-          {allThreads?.map((val) => {
-            if (input === "") return null;
-            else if (
-              val?.threadName.toLowerCase().includes(input?.toLowerCase())
-            )
-              return (
-                <li key={val.threadID} onClick={() => handleClick(val)}>
-                  {val.threadName}
-                </li>
-              );
-          })}
-        </ul>
+        <ul>{input !== "" ? results : null}</ul>
       </form>
-      <button onClick={() => console.log(input)}>click</button>
     </>
   );
 }

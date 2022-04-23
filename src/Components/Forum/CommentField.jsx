@@ -6,6 +6,9 @@ import {
   calcCommentPageCount,
 } from "../../Resources/functions";
 import "../../App.css";
+import { CommentsUpdateContext } from "../../Resources/Context-Providers/ThreadContextProvider";
+import { useContext } from "react";
+//
 function CommentField({
   user,
   params,
@@ -16,6 +19,7 @@ function CommentField({
   pageCount,
   postsPerPage,
 }) {
+  const commentsUpdate = useContext(CommentsUpdateContext);
   const calcCommentPageCount = () => {
     return Math.ceil(getComments(params).length / postsPerPage);
   };
@@ -42,7 +46,7 @@ function CommentField({
         time: new Intl.DateTimeFormat("en-GB", options).format(date),
       });
       localStorage.setItem("comments", JSON.stringify(comments));
-      setAllComments(comments);
+      // setAllComments(comments);
       e.target[0].value = "";
       let tempThreads = getAllThreads();
       const threadIndex = tempThreads.findIndex(
@@ -50,7 +54,7 @@ function CommentField({
       );
       tempThreads[threadIndex].comments += 1;
       localStorage.setItem("threads", JSON.stringify(tempThreads));
-      setComments(getComments(params));
+      commentsUpdate(params.threadID);
       if (calcCommentPageCount() > pageCount) setPage(calcCommentPageCount());
       else if (page !== calcCommentPageCount) setPage(calcCommentPageCount());
     }
