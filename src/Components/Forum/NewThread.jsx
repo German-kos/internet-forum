@@ -74,9 +74,7 @@ function NewThread({
       temp2.push(newThread);
       localStorage.setItem("threads", JSON.stringify(temp2));
       setAllThreads(temp);
-      // console.log(temp2);
       console.log();
-      // console.log(currentThreadsTemp);
       setCurrentThreads(
         getAllThreadsByCategoryID(parseInt(params.categoryID)).slice().reverse()
       );

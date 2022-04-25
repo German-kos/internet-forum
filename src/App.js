@@ -1,8 +1,9 @@
 import { React, useState, useEffect } from "react";
-import axios from "axios";
+import axios, { Axios } from "axios";
 import "./App.css";
 import SiteRouter from "./Components/Site-Router/SiteRouter";
 import Layout from "./Components/Landing-Page/Layout.jsx";
+import { getLoggedUser } from "./Resources/functions";
 
 function App() {
   const [user, setUser] = useState();
@@ -26,6 +27,22 @@ function App() {
     // if(localStorage.getItem("users") === null)
     localStorage.setItem("usersList", JSON.stringify(recieveData));
   }, []);
+  useEffect(async () => {
+    // const tempLoggedUser = getLoggedUser()
+    const tempUser = await axios
+      .get("/files/users.json")
+      .then((res) =>
+        res.data.find(
+          (x) => x.username.toLowerCase() === user?.username.toLowerCase()
+        )
+      );
+    console.log(tempUser);
+    if (tempUser?.ban) {
+      localStorage.removeItem("currUser");
+      setUser(undefined);
+    }
+  }, [user]);
+
   return (
     <div>
       <SiteRouter user={user} setUser={setUser} users={users} />

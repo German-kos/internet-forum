@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 function Copyright(props) {
   return (
     <Typography
@@ -45,10 +45,18 @@ function SignIn({ user, setUser }) {
           obj.username.toLowerCase() === e.target[0].value.toLowerCase() &&
           obj.password === e.target[2].value
       );
-      setUser(tempUser);
-      if (tempUser !== undefined && tempUser !== null) {
-        delete tempUser.password;
-        localStorage.setItem("currUser", JSON.stringify(tempUser));
+      if (tempUser.ban) {
+        Swal.fire({
+          icon: "error",
+          title: "Your account has been suspended!",
+          text: "For ban appeals contact us via Email: Administrator@Mail.com.",
+        });
+      } else {
+        setUser(tempUser);
+        if (tempUser !== undefined && tempUser !== null) {
+          delete tempUser.password;
+          localStorage.setItem("currUser", JSON.stringify(tempUser));
+        }
       }
     });
   };

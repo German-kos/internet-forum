@@ -44,6 +44,7 @@ function CommentField({
         author: user.username,
         comment: e.target[0].value,
         time: new Intl.DateTimeFormat("en-GB", options).format(date),
+        editted: false,
       });
       localStorage.setItem("comments", JSON.stringify(comments));
       // setAllComments(comments);

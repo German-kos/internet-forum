@@ -47,6 +47,7 @@ function Threads({ user }) {
     setPage(value);
   };
   //
+  console.log(pageCount);
   return (
     <div className="threadsContainer">
       <ThreadAuthorComment
@@ -59,6 +60,7 @@ function Threads({ user }) {
         params={params}
         user={user}
         page={page}
+        setPage={setPage}
       />
       <div>
         {
@@ -78,7 +80,7 @@ function Threads({ user }) {
           shape="rounded"
           page={page}
           onChange={handleChange}
-          count={pageCount}
+          count={pageCount === 0 ? 1 : pageCount}
         />
       </div>
     </div>

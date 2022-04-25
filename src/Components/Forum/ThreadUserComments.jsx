@@ -13,8 +13,10 @@ import {
 import { Divider, Avatar } from "@mui/material";
 import { IconButton } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
+import EditComment from "./EditComment";
+import { Edit } from "@mui/icons-material";
 //
-function ThreadUserComments({ user, handleUserClick, params, page }) {
+function ThreadUserComments({ user, handleUserClick, params, page, setPage }) {
   const comments = useContext(CommentsContext);
   const commentsUpdate = useContext(CommentsUpdateContext);
   const postsPerPage = 5;
@@ -48,6 +50,7 @@ function ThreadUserComments({ user, handleUserClick, params, page }) {
         );
         tempThreads[threadIndex].comments -= 1;
         localStorage.setItem("threads", JSON.stringify(tempThreads));
+        setPage(1);
       }
     });
   };
@@ -76,11 +79,19 @@ function ThreadUserComments({ user, handleUserClick, params, page }) {
                     >
                       <ClearIcon sx={{ opacity: 0.5 }} />
                     </IconButton>
+                    <div>
+                      <EditComment comment={comment} />
+                    </div>
                   </div>
                 ) : null}
               </div>
               <Divider />
               <div className="commentContent">{comment.comment}</div>
+              {comment.editted ? (
+                <div style={{ color: "gray", fontSize: "small" }}>
+                  This comment was editted.
+                </div>
+              ) : null}
               <Divider />
               <div className="timePosted">Posted: {comment.time}</div>
             </div>

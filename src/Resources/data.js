@@ -99,6 +99,7 @@ export const mockComments = [
     author: "Jane1",
     comment: "Awesome!",
     time: "16 / 04 / 2022, 14: 22",
+    editted: false,
   },
   {
     threadID: 2,
@@ -106,6 +107,7 @@ export const mockComments = [
     author: "John1",
     comment: "Amazing!",
     time: "16 / 04 / 2022, 14: 22",
+    editted: false,
   },
   {
     threadID: 2,
@@ -113,6 +115,7 @@ export const mockComments = [
     author: "Jane1",
     comment: "Thanks!!",
     time: "16 / 04 / 2022, 14: 22",
+    editted: false,
   },
   {
     threadID: 3,
@@ -120,6 +123,7 @@ export const mockComments = [
     author: "Jane1",
     comment: "Hi! Musicians are awesome!",
     time: "16 / 04 / 2022, 14: 22",
+    editted: false,
   },
   {
     threadID: 4,
@@ -127,6 +131,7 @@ export const mockComments = [
     author: "John1",
     comment: "I have many hobbies!!",
     time: "16 / 04 / 2022, 14: 22",
+    editted: false,
   },
   {
     threadID: 5,
@@ -134,6 +139,7 @@ export const mockComments = [
     author: "Jane1",
     comment: "Games are fun.",
     time: "16 / 04 / 2022, 14: 22",
+    editted: false,
   },
   {
     threadID: 6,
@@ -141,5 +147,6 @@ export const mockComments = [
     author: "Jane1",
     comment: "S>ART @@@@@@@@@@@@@@@@@@",
     time: "16 / 04 / 2022, 14: 22",
+    editted: false,
   },
 ];
