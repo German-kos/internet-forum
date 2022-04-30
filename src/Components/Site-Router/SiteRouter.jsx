@@ -8,9 +8,13 @@ import Forums from "../Forum/Forums";
 import ThreadsList from "../Forum/ThreadsList";
 import Threads from "../Forum/Threads";
 import Loading from "../../Resources/Loading";
+import UserList from "../Admin-Tools/UserList";
+import { getLoggedUser } from "../../Resources/functions";
 // import LayoutTest from "../Landing-Page/Layout";
 
 function SiteRouter({ user, setUser, users }) {
+  console.log(user);
+  const currUser = getLoggedUser();
   return (
     <BrowserRouter>
       <Routes>
@@ -34,9 +38,19 @@ function SiteRouter({ user, setUser, users }) {
               )
             }
           />
-
+          <Route path="/aaa" element={<UserList />} />
           <Route path="/user" element={<Navigate to="/" />} />
           <Route path={`/user/:userID`} element={<PublicProfileOthers />} />
+          <Route
+            path="/userlist"
+            element={
+              currUser !== null && currUser.admin ? (
+                <UserList user={user} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
         </Route>
         <Route
           path="/login"

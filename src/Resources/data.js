@@ -150,3 +150,9 @@ export const mockComments = [
     editted: false,
   },
 ];
+export const mockUserData = [
+  {
+    id: 0,
+    ban: false,
+  },
+];

@@ -1,0 +1,26 @@
+.userCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gray;
+  border-radius: 5px;
+  padding: 4px 4px 4px 4px;
+  background-color: aquamarine;
+  font-weight: bolder;
+}
+.userCardNameAvatar {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  align-items: center;
+  height: fit-content;
+  gap: 5px;
+}
+.userCardName {
+  display: flex;
+  flex-direction: column;
+}
+.suspended {
+  font-size: small;
+  color: red;
+  position: inherit;
+}

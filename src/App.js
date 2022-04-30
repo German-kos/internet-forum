@@ -44,7 +44,7 @@ function App() {
   }, [user]);
 
   return (
-    <div>
+    <div className="appBackground">
       <SiteRouter user={user} setUser={setUser} users={users} />
     </div>
   );

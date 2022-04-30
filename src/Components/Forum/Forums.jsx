@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Loading from "../../Resources/Loading";
 import { useNavigate } from "react-router-dom";
 import { categories, mockThreads, mockComments } from "../../Resources/data";
+import { categoryCard, cardContent } from "./ForumMuiStyle";
 
 function Forums() {
   const [forums, setForums] = useState([]);
@@ -44,12 +45,7 @@ function Forums() {
             <Card
               onClick={() => handleClick(this, category)}
               key={i}
-              sx={{
-                minWidth: 345,
-                maxWidth: 345,
-                minHeight: 250,
-                maxHeight: 250,
-              }}
+              sx={categoryCard}
             >
               <CardMedia
                 component="img"
@@ -57,7 +53,7 @@ function Forums() {
                 image={category.pic}
                 alt={category.category}
               />
-              <CardContent>
+              <CardContent sx={{ fontFamily: "Poppins, sans-serif;" }}>
                 <Typography gutterBottom variant="h5" component="div">
                   {category.category}
                 </Typography>

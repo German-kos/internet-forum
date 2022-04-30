@@ -1,0 +1,29 @@
+.personalProfileCard {
+  border: 2px solid gray;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  justify-content: center;
+  margin: auto;
+}
+.basicInfo {
+  display: flex;
+  padding: 1% 1% 1% 1%;
+  border: 1px solid gray;
+  border-radius: 16px;
+}
+.basicInfoText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16px;
+}
+.basicInfoUsername {
+  font-size: 300%;
+}
+.basicInfoFullname {
+  font-size: 175%;
+  color: gray;
+}

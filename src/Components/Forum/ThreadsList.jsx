@@ -172,7 +172,8 @@ function ThreadsList({ user }) {
                   <VisibilityIcon fontSize="small" sx={{ color: "gray" }} />{" "}
                   <div
                     style={{
-                      display: "inline-block",
+                      display: "flex",
+                      marginRight: "4px",
                     }}
                   >
                     {thread.views}

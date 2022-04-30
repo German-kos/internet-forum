@@ -117,12 +117,13 @@
   border: #6d6d6d;
 }
 .timePosted {
-  /* display: flex; */
+  display: flex;
   padding-right: 5px;
   align-items: center;
   font-size: smaller;
   color: gray;
   margin-left: auto;
+  justify-content: space-between;
 }
 .profileContainer {
   /* display: flex; */
@@ -142,4 +143,7 @@
 
   /* margin-left: 5px; */
   gap: 5px;
+}
+.appBackground {
+  background-color: #eaeaea;
 }
