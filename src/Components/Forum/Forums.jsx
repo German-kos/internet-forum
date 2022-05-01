@@ -8,9 +8,25 @@ import Loading from "../../Resources/Loading";
 import { useNavigate } from "react-router-dom";
 import { categories, mockThreads, mockComments } from "../../Resources/data";
 import { categoryCard, cardContent } from "./ForumMuiStyle";
-
-function Forums() {
+// import EditCategory from "./EditCategory";
+import { IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import Swal from "sweetalert2";
+import EditCategory from "./EditCategory";
+import ClearIcon from "@mui/icons-material/Clear";
+import {
+  getAllComments,
+  getAllThreads,
+  getAllThreadsByCategoryID,
+  getCategories,
+  getThreads,
+} from "../../Resources/functions";
+import AddCategory from "./AddCategory";
+import { Add } from "@mui/icons-material";
+//
+function Forums({ user }) {
   const [forums, setForums] = useState([]);
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     setForums(JSON.parse(localStorage.getItem("forums")));
@@ -33,12 +49,55 @@ function Forums() {
       localStorage.setItem("comments", JSON.stringify(mockComments));
     }
   }, []);
+  //
   const handleClick = (e, eCategory) => {
-    console.log(eCategory.id);
     return navigate(`/categories/${eCategory.id}`);
+  };
+  //
+  const removeCategory = (e, category) => {
+    e.stopPropagation();
+    console.log(e);
+    console.log(category);
+    Swal.fire({
+      title: `Are you sure you want to remove '${category.category}' ?`,
+      text: `All threads and comments relating to '${category.category}' will be removed as well. `,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let tempCategories = getCategories();
+        let tempThreads = getAllThreads();
+        let tempComments = getAllComments();
+        tempCategories = tempCategories.filter((x) => {
+          return parseInt(x.id) !== parseInt(category.id);
+        });
+        localStorage.setItem("forums", JSON.stringify(tempCategories));
+        setForums(tempCategories);
+        let tempThreadsID = getAllThreadsByCategoryID(category.id).map((x) => {
+          return x.threadID;
+        });
+        tempComments = tempComments.filter((x) => {
+          if (tempThreadsID.indexOf(x.threadID) === -1) return x;
+        });
+        localStorage.setItem("comments", JSON.stringify(tempComments));
+        tempThreads = tempThreads.filter((x) => {
+          return x.categoryID !== category.id;
+        });
+        localStorage.setItem("threads", JSON.stringify(tempThreads));
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  };
+  //
+  const handleImgError = (e) => {
+    e.target.src = "files/Forum-Pictures/1.jpg";
   };
   return forums !== [] ? (
     <>
+      <AddCategory setForums={setForums} />
       <div className="categories">
         {forums?.map((category, i) => {
           return (
@@ -52,6 +111,7 @@ function Forums() {
                 height="140"
                 image={category.pic}
                 alt={category.category}
+                onError={handleImgError}
               />
               <CardContent sx={{ fontFamily: "Poppins, sans-serif;" }}>
                 <Typography gutterBottom variant="h5" component="div">
@@ -61,6 +121,14 @@ function Forums() {
                   {category.info}
                 </Typography>
               </CardContent>
+              {user?.admin ? (
+                <div>
+                  <EditCategory setForums={setForums} category={category} />
+                  <IconButton onClick={(e) => removeCategory(e, category)}>
+                    <ClearIcon />
+                  </IconButton>
+                </div>
+              ) : null}
             </Card>
           );
         })}

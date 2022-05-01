@@ -76,3 +76,7 @@ export const addViewsToThread = (thread) => {
   tempThreads[threadIndex].views += 1;
   localStorage.setItem("threads", JSON.stringify(tempThreads));
 };
+export const getCategories = () => {
+  // get categories from local storage
+  return JSON.parse(localStorage.getItem("forums"));
+};

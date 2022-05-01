@@ -13,13 +13,12 @@ import { getLoggedUser } from "../../Resources/functions";
 // import LayoutTest from "../Landing-Page/Layout";
 
 function SiteRouter({ user, setUser, users }) {
-  console.log(user);
   const currUser = getLoggedUser();
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout user={user} setUser={setUser} users={users} />}>
-          <Route index element={<Forums />} />
+          <Route index element={<Forums user={user} />} />
           <Route
             path="/categories/:categoryID"
             element={<ThreadsList user={user} />}

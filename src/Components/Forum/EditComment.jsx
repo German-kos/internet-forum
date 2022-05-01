@@ -20,7 +20,8 @@ function EditComment({ comment }) {
   const [open, setOpen] = React.useState(false);
   const commentsUpdate = React.useContext(CommentsUpdateContext);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (e) => {
+    console.log(e);
     setOpen(true);
   };
 
@@ -80,11 +81,6 @@ function EditComment({ comment }) {
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogContent>
-          {/* <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
-        </DialogContentText> */}
-          {/* <div className="commentField"> */}
           <DialogTitle>{"Edit Comment:"}</DialogTitle>
           <form onSubmit={submitChanges}>
             <TextField

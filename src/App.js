@@ -22,7 +22,6 @@ function App() {
     });
     checkForUser();
     //
-    // console.log(recieveData);
     setUsers(recieveData);
     // if(localStorage.getItem("users") === null)
     localStorage.setItem("usersList", JSON.stringify(recieveData));
@@ -36,7 +35,6 @@ function App() {
           (x) => x.username.toLowerCase() === user?.username.toLowerCase()
         )
       );
-    console.log(tempUser);
     if (tempUser?.ban) {
       localStorage.removeItem("currUser");
       setUser(undefined);
