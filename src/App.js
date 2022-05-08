@@ -3,8 +3,11 @@ import axios, { Axios } from "axios";
 import "./App.css";
 import SiteRouter from "./Components/Site-Router/SiteRouter";
 import Layout from "./Components/Landing-Page/Layout.jsx";
-import { getLoggedUser } from "./Resources/functions";
-
+import { getLoggedUser, isBanned } from "./Resources/functions";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { setBanData } from "./Resources/functions";
+//
 function App() {
   const [user, setUser] = useState();
   const [users, setUsers] = useState([]);
@@ -25,6 +28,7 @@ function App() {
     setUsers(recieveData);
     // if(localStorage.getItem("users") === null)
     localStorage.setItem("usersList", JSON.stringify(recieveData));
+    setBanData();
   }, []);
   useEffect(async () => {
     // const tempLoggedUser = getLoggedUser()
@@ -35,7 +39,7 @@ function App() {
           (x) => x.username.toLowerCase() === user?.username.toLowerCase()
         )
       );
-    if (tempUser?.ban) {
+    if (tempUser !== undefined && isBanned(tempUser?.userID)) {
       localStorage.removeItem("currUser");
       setUser(undefined);
     }
@@ -44,6 +48,16 @@ function App() {
   return (
     <div className="appBackground">
       <SiteRouter user={user} setUser={setUser} users={users} />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        limit={1}
+      />
     </div>
   );
 }

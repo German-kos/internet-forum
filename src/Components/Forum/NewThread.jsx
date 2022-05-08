@@ -17,6 +17,8 @@ import {
 import { TextField } from "@mui/material";
 import { validateLines } from "../../Resources/functions";
 import "../../App.css";
+import { toast } from "react-toastify";
+import { buttonStyle } from "./ForumMuiStyle";
 //
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -50,6 +52,7 @@ function NewThread({
       let currentThreadsTemp = getAllThreadsByCategoryID(
         parseInt(params.categoryID)
       );
+      let newThread;
       const options = {
         year: "numeric",
         month: "numeric",
@@ -60,16 +63,29 @@ function NewThread({
         timeZone: "Israel",
       };
       const date = new Date();
-      const newThread = {
-        categoryID: parseInt(params.categoryID),
-        threadID: temp2[temp2.length - 1].threadID + 1,
-        author: user.username,
-        threadName: e.target[0].value,
-        content: e.target[2].value,
-        views: 0,
-        comments: 0,
-        time: new Intl.DateTimeFormat("en-GB", options).format(date),
-      };
+      if (temp2.length >= 1) {
+        newThread = {
+          categoryID: parseInt(params.categoryID),
+          threadID: temp2[temp2.length - 1].threadID + 1,
+          author: user.username,
+          threadName: e.target[0].value,
+          content: e.target[2].value,
+          views: 0,
+          comments: 0,
+          time: new Intl.DateTimeFormat("en-GB", options).format(date),
+        };
+      } else {
+        newThread = {
+          categoryID: parseInt(params.categoryID),
+          threadID: 1,
+          author: user.username,
+          threadName: e.target[0].value,
+          content: e.target[2].value,
+          views: 0,
+          comments: 0,
+          time: new Intl.DateTimeFormat("en-GB", options).format(date),
+        };
+      }
       temp.push(newThread);
       temp2.push(newThread);
       localStorage.setItem("threads", JSON.stringify(temp2));
@@ -77,6 +93,17 @@ function NewThread({
       console.log();
       setCurrentThreads(
         getAllThreadsByCategoryID(parseInt(params.categoryID)).slice().reverse()
+      );
+      toast.success(
+        `Thread '${newThread.threadName}' has been created successfully.`,
+        {
+          position: "bottom-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: 0,
+        }
       );
       e.target[0].value = "";
       e.target[2].value = "";

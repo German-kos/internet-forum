@@ -5,10 +5,13 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { TextField } from "@mui/material";
+import { Icon, TextField } from "@mui/material";
 import "./CSS-Files/EditCategory.css";
 import { getCategories } from "../../Resources/functions";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import AddIcon from "@mui/icons-material/Add";
+import { buttonStyle } from "./ForumMuiStyle";
 //
 function AddCategory({ setForums }) {
   const [open, setOpen] = React.useState(false);
@@ -43,21 +46,45 @@ function AddCategory({ setForums }) {
     ) {
       let tempCategories = getCategories();
       console.log(tempCategories);
-      tempCategories.push({
-        category: e.target[0].value,
-        id: tempCategories[tempCategories.length - 1].id + 1,
-        pic: `/files/Forum-Pictures/${e.target[5].value}.jpg`,
-        info: e.target[2].value,
-      });
+      // console.log(tempCategories);
+      if (tempCategories.length >= 1) {
+        tempCategories.push({
+          category: e.target[0].value,
+          id: tempCategories[tempCategories.length - 1]?.id + 1,
+          pic: `/files/Forum-Pictures/${e.target[5].value}.jpg`,
+          info: e.target[2].value,
+        });
+      } else {
+        tempCategories.push({
+          category: e.target[0].value,
+          id: 1,
+          pic: `/files/Forum-Pictures/${e.target[5].value}.jpg`,
+          info: e.target[2].value,
+        });
+      }
       localStorage.setItem("forums", JSON.stringify(tempCategories));
       setForums(tempCategories);
       handleClose();
-      Swal.fire("Added!", "Category has been added.", "success");
+      // Swal.fire("Added!", "Category has been added.", "success");
+      toast.success(
+        `${
+          tempCategories[tempCategories.length - 1].category
+        } has been added successfuly.`,
+        {
+          position: "bottom-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: 0,
+        }
+      );
     }
   };
   return (
     <div>
-      <Button variant="contained" onClick={handleClickOpen}>
+      <Button sx={buttonStyle} variant="contained" onClick={handleClickOpen}>
+        <AddIcon />
         Add a Category
       </Button>
       <Dialog

@@ -24,6 +24,7 @@ import {
 } from "../../Resources/Context-Providers/ThreadContextProvider";
 import ThreadAuthorComment from "./ThreadAuthorComment";
 import ThreadUserComments from "./ThreadUserComments";
+import { paginationStyle } from "./ThreadsListMuiStyle";
 //
 function Threads({ user }) {
   const comments = useContext(CommentsContext);
@@ -47,7 +48,6 @@ function Threads({ user }) {
     setPage(value);
   };
   //
-  console.log(pageCount);
   return (
     <div className="threadsContainer">
       <ThreadAuthorComment
@@ -76,6 +76,7 @@ function Threads({ user }) {
       </div>
       <div style={{ marginTop: "15px" }}>
         <Pagination
+          sx={paginationStyle}
           variant="outlined"
           shape="rounded"
           page={page}

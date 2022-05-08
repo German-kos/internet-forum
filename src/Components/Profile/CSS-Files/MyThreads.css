@@ -1,0 +1,32 @@
+.threadCard {
+  border: 2px solid #797eab;
+  border-radius: 16px;
+  padding: 1% 1% 1% 1%;
+  margin-bottom: 1%;
+  background-color: #dbdefa;
+  transition-duration: 2s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+/* .threadCard:hover {
+  transform: scale(1);
+}
+.container {
+  display: flex;
+}
+.container :hover {
+  transform: scale(1.1);
+} */
+.cont {
+  border-radius: 16px;
+  transition-duration: 0.2s;
+  box-shadow: rgba(224, 224, 224, 0.35) 0px 6px 15px;
+}
+.cont:hover {
+  cursor: pointer;
+  transition-duration: 0.2s;
+  transform: scale(1.01);
+  /* border-radius: 16px; */
+  box-shadow: rgba(53, 55, 71, 0.35) 0px 6px 15px;
+}

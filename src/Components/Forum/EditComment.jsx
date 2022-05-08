@@ -11,11 +11,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import { TextField } from "@mui/material";
 import { getAllComments } from "../../Resources/functions";
 import { CommentsUpdateContext } from "../../Resources/Context-Providers/ThreadContextProvider";
-
+import { toast } from "react-toastify";
+//
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
+//
 function EditComment({ comment }) {
   const [open, setOpen] = React.useState(false);
   const commentsUpdate = React.useContext(CommentsUpdateContext);
@@ -57,6 +58,14 @@ function EditComment({ comment }) {
       commentsUpdate(comment.threadID);
       console.log(commentIndex);
       console.log(temp);
+      toast.success(`Comment has been changed successfully.`, {
+        position: "bottom-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: 0,
+      });
       handleClose();
     }
     // console.log(temp.findIndex((x) => x.commentID === comment.commentID));

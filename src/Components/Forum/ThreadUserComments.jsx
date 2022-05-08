@@ -15,6 +15,7 @@ import { IconButton } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import EditComment from "./EditComment";
 import { Edit } from "@mui/icons-material";
+import { toast } from "react-toastify";
 //
 function ThreadUserComments({ user, handleUserClick, params, page, setPage }) {
   const comments = useContext(CommentsContext);
@@ -50,6 +51,14 @@ function ThreadUserComments({ user, handleUserClick, params, page, setPage }) {
         );
         tempThreads[threadIndex].comments -= 1;
         localStorage.setItem("threads", JSON.stringify(tempThreads));
+        toast.success(`The comment has been removed successfully.`, {
+          position: "bottom-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          progress: 0,
+        });
         setPage(1);
       }
     });

@@ -41,7 +41,7 @@ function SiteRouter({ user, setUser, users }) {
           <Route path="/user" element={<Navigate to="/" />} />
           <Route path={`/user/:userID`} element={<PublicProfileOthers />} />
           <Route
-            path="/userlist"
+            path="/userslist"
             element={
               currUser !== null && currUser.admin ? (
                 <UserList user={user} />

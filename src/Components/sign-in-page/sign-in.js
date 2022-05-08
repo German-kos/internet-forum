@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { banReason, isBanned } from "../../Resources/functions";
 function Copyright(props) {
   return (
     <Typography
@@ -45,18 +46,29 @@ function SignIn({ user, setUser }) {
           obj.username.toLowerCase() === e.target[0].value.toLowerCase() &&
           obj.password === e.target[2].value
       );
-      if (tempUser.ban) {
+      console.log(tempUser);
+      if (tempUser !== undefined) {
+        if (isBanned(tempUser?.userID)) {
+          Swal.fire({
+            icon: "error",
+            title: "Your account has been suspended!",
+            html: `Reason: ${banReason(
+              tempUser?.userID
+            )} <br><br>For ban appeals contact us via Email: Administrator@Mail.com.`,
+          });
+        } else {
+          setUser(tempUser);
+          if (tempUser !== undefined && tempUser !== null) {
+            delete tempUser.password;
+            localStorage.setItem("currUser", JSON.stringify(tempUser));
+          }
+        }
+      } else {
         Swal.fire({
           icon: "error",
-          title: "Your account has been suspended!",
-          text: "For ban appeals contact us via Email: Administrator@Mail.com.",
+
+          text: "Username or password do not match.",
         });
-      } else {
-        setUser(tempUser);
-        if (tempUser !== undefined && tempUser !== null) {
-          delete tempUser.password;
-          localStorage.setItem("currUser", JSON.stringify(tempUser));
-        }
       }
     });
   };
@@ -117,21 +129,21 @@ function SignIn({ user, setUser }) {
             >
               Sign In
             </Button>
-            <Grid container>
+            {/* <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                {/* <Link href="#" variant="body2">
+                <Link href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
-                </Link> */}
+                </Link>
               </Grid>
-            </Grid>
+            </Grid> */}
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );

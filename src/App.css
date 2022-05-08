@@ -61,8 +61,8 @@
   margin: 0 auto;
   align-items: center;
   justify-content: center;
-  column-gap: 10px;
-  row-gap: 10px;
+  column-gap: 16px;
+  row-gap: 16px;
 }
 .commentField {
   margin-top: 2%;

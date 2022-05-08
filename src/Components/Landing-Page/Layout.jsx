@@ -68,11 +68,16 @@ function Layout({ user, setUser, users, children }) {
       return navigate("/");
     }
   };
+  //
   const handleProfileClick = () => {
     closeDrawer();
     return user === undefined ? navigate("/login") : navigate("/profile");
   };
-
+  //
+  const handleUsersListClick = () => {
+    closeDrawer();
+    return navigate("/userslist");
+  };
   return (
     <ThreadContextProvider>
       <ThemeProvider theme={theme}>
@@ -147,6 +152,11 @@ function Layout({ user, setUser, users, children }) {
               <ListItem button onClick={handleProfileClick}>
                 Profile
               </ListItem>
+              {user?.admin ? (
+                <ListItem button onClick={handleUsersListClick}>
+                  Users List
+                </ListItem>
+              ) : null}
             </List>
           </Drawer>
         </div>

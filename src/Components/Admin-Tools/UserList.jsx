@@ -6,11 +6,14 @@ import { Avatar } from "@mui/material";
 import "./AdminTools.css";
 import { Button } from "@mui/material";
 // import { Button } from "bootstrap";
+import BanUser from "./BanUser";
+import UnbanUser from "./UnbanUser";
 //
 function UserList({ user }) {
   const navigate = useNavigate();
   const [userList, setUserList] = useState();
-  const [filteredList, setFIlteredList] = useState();
+  const [filteredList, setFilteredList] = useState();
+  const [banList, setBanList] = useState();
   const [input, setInput] = useState();
   useEffect(async () => {
     const usersData = await axios.get("/files/users.json");
@@ -20,13 +23,24 @@ function UserList({ user }) {
       return item;
     });
     setUserList(recieveData);
-    setFIlteredList(recieveData);
+    setFilteredList(recieveData);
+    setBanList(JSON.parse(localStorage.getItem("banData")));
   }, []);
   //
+  const triggerStateUpdate = async () => {
+    const usersData = await axios.get("/files/users.json");
+    const recieveData = usersData.data.map((item) => {
+      delete item.password;
+      delete item.email;
+      return item;
+    });
+    setUserList(recieveData);
+    setFilteredList(recieveData);
+  };
   const onInputChange = (e) => {
     console.log(e.target.value);
     setInput(e.target.value);
-    setFIlteredList(
+    setFilteredList(
       userList.filter((x) => {
         if (e.target.value === "" || e.target.value === undefined) return x;
         else if (
@@ -37,32 +51,26 @@ function UserList({ user }) {
     );
   };
   //
-  const ban = async (user) => {
-    // const temp = await axios.get("/files/users.json").then((res) => {
-    //   const userIndex = res.data.findIndex(
-    //     (val) => parseInt(user.userID) === val.userID
-    //   );
-    //   res.data[userIndex].ban = true;
-    // });
-    // console.log(temp);
-    // //   .put("/files/users.json", res.data);
-    const usersData = await axios.get("/files/users.json");
-    const userIndex = usersData.data.findIndex(
-      (val) => parseInt(user.userID) === parseInt(val.userID)
+  const ban = (user) => {
+    const userIndex = banList.findIndex(
+      (u) => parseInt(u.userID) === parseInt(user.userID)
     );
-    usersData.data[userIndex].ban = true;
-    const temp = axios.put("/files/users.json", usersData.data);
+    const tempBanList = banList;
+    tempBanList[userIndex].ban = true;
+    localStorage.setItem("banData", JSON.stringify(tempBanList));
+    setBanList(tempBanList);
+    triggerStateUpdate();
   };
-  //
   const unban = (user) => {
-    const temp = axios.get("/files/users.json").then((res) => {
-      const userIndex = res.data.findIndex(
-        (val) => parseInt(user.userID) === val.userID
-      );
-      res.data[userIndex].ban = false;
-    }).put;
+    const userIndex = banList.findIndex(
+      (u) => parseInt(u.userID) === parseInt(user.userID)
+    );
+    const tempBanList = banList;
+    tempBanList[userIndex].ban = false;
+    localStorage.setItem("banData", JSON.stringify(tempBanList));
+    setBanList(tempBanList);
+    triggerStateUpdate();
   };
-  //   };
   //
   return (
     <>
@@ -78,19 +86,37 @@ function UserList({ user }) {
                   <div className="userCardName">
                     {x.username}
                     <div className="suspended">
-                      {x.ban ? "Suspended" : null}
+                      {banList?.find(
+                        (u) => parseInt(u.userID) === parseInt(x.userID)
+                      ).ban
+                        ? "Suspended"
+                        : null}
                     </div>
                   </div>
                 </div>
                 <div>
-                  {x.ban ? (
-                    <Button variant="contained" onClick={() => unban(x)}>
-                      Unban
-                    </Button>
+                  {banList?.find(
+                    (u) => parseInt(u.userID) === parseInt(x.userID)
+                  ).ban ? (
+                    // <Button variant="contained" onClick={() => unban(x)}>
+                    //   Unban
+                    // </Button>
+                    <UnbanUser
+                      banList={banList}
+                      setBanList={setBanList}
+                      triggerStateUpdate={triggerStateUpdate}
+                      user={x}
+                    />
                   ) : (
-                    <Button variant="contained" onClick={() => ban(x)}>
-                      Ban
-                    </Button>
+                    // <Button variant="contained" onClick={() => ban(x)}>
+                    //   Ban
+                    // </Button>
+                    <BanUser
+                      banList={banList}
+                      setBanList={setBanList}
+                      triggerStateUpdate={triggerStateUpdate}
+                      user={x}
+                    />
                   )}
                 </div>
               </div>

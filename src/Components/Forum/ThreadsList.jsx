@@ -6,6 +6,7 @@ import AddIcon from "@mui/icons-material/Add";
 import "../../App.css";
 import { color } from "@mui/system";
 import NewThread from "./NewThread";
+import { toast } from "react-toastify";
 import {
   getAllThreads,
   getAllThreadsByCategoryID,
@@ -18,6 +19,8 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import ClearIcon from "@mui/icons-material/Clear";
 import Swal from "sweetalert2";
 import { Divider, IconButton, Pagination } from "@mui/material";
+import { buttonStyle } from "./NewThreadMuiStyle";
+import { paginationStyle } from "./ThreadsListMuiStyle";
 //
 //
 function ThreadsList({ user }) {
@@ -89,6 +92,17 @@ function ThreadsList({ user }) {
         setCurrentThreads(
           getAllThreadsByCategoryID(parseInt(params.categoryID)).reverse()
         );
+        toast.success(
+          `Thread '${thread.threadName}' has been removed successfully.`,
+          {
+            position: "bottom-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            draggable: true,
+            progress: 0,
+          }
+        );
       }
     });
   };
@@ -113,15 +127,7 @@ function ThreadsList({ user }) {
         postsPerPage={postsPerPage}
       />
       <div>
-        <Button
-          variant="contained"
-          onClick={handleClickOpen}
-          style={{
-            backgroundColor: "#6d6d6d",
-            color: "white",
-            boxShadow: "rgba(0, 0, 0, 0.35) 0px 2.5px 7.5px",
-          }}
-        >
+        <Button variant="contained" onClick={handleClickOpen} sx={buttonStyle}>
           <AddIcon />
           {"New Thread"}
         </Button>
@@ -185,7 +191,17 @@ function ThreadsList({ user }) {
             </div>
           );
         })}
+        {/* <div */}
+        {/* // style={{
+        //   position: "fixed",
+        //   bottom: "8px",
+        //   right: "auto",
+        //   left: "50%",
+        // }} */}
+        {/* // > */}
+        {/* // </div> */}
         <Pagination
+          sx={paginationStyle}
           variant="outlined"
           shape="rounded"
           page={page}

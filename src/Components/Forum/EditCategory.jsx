@@ -10,6 +10,7 @@ import { IconButton, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import "./CSS-Files/EditCategory.css";
 import { getCategories } from "../../Resources/functions";
+import { toast } from "react-toastify";
 //
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -46,6 +47,7 @@ function EditCategory({ category, setForums }) {
       const categoryIndex = tempCategories.findIndex(
         (x) => parseInt(x.id) === parseInt(category.id)
       );
+      const pastName = tempCategories[categoryIndex].category;
       tempCategories[categoryIndex].category = e.target[0].value;
       tempCategories[categoryIndex].info = e.target[2].value;
       tempCategories[
@@ -53,6 +55,14 @@ function EditCategory({ category, setForums }) {
       ].pic = `/files/Forum-Pictures/${e.target[5].value}.jpg`;
       localStorage.setItem("forums", JSON.stringify(tempCategories));
       setForums(tempCategories);
+      toast.success(`${pastName} has been changed successfuly.`, {
+        position: "bottom-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: 0,
+      });
       handleClose();
     }
   };

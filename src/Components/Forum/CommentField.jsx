@@ -38,14 +38,25 @@ function CommentField({
         timeZone: "Israel",
       };
       const date = new Date();
-      comments.push({
-        threadID: parseInt(params.threadID),
-        commentID: comments[comments.length - 1].commentID + 1,
-        author: user.username,
-        comment: e.target[0].value,
-        time: new Intl.DateTimeFormat("en-GB", options).format(date),
-        editted: false,
-      });
+      if (comments.length >= 1) {
+        comments.push({
+          threadID: parseInt(params.threadID),
+          commentID: comments[comments.length - 1].commentID + 1,
+          author: user.username,
+          comment: e.target[0].value,
+          time: new Intl.DateTimeFormat("en-GB", options).format(date),
+          editted: false,
+        });
+      } else {
+        comments.push({
+          threadID: parseInt(params.threadID),
+          commentID: 1,
+          author: user.username,
+          comment: e.target[0].value,
+          time: new Intl.DateTimeFormat("en-GB", options).format(date),
+          editted: false,
+        });
+      }
       localStorage.setItem("comments", JSON.stringify(comments));
       // setAllComments(comments);
       e.target[0].value = "";

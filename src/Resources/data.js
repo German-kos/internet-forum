@@ -150,9 +150,25 @@ export const mockComments = [
     editted: false,
   },
 ];
-export const mockUserData = [
+export const banData = [
   {
-    id: 0,
+    userID: 0,
     ban: false,
+    reason: null,
+  },
+  {
+    userID: 1,
+    ban: false,
+    reason: null,
+  },
+  {
+    userID: 2,
+    ban: false,
+    reason: null,
+  },
+  {
+    userID: 3,
+    ban: true,
+    reason: "profanity",
   },
 ];
