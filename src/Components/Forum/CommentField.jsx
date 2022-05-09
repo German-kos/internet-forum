@@ -8,6 +8,7 @@ import {
 import "../../App.css";
 import { CommentsUpdateContext } from "../../Resources/Context-Providers/ThreadContextProvider";
 import { useContext } from "react";
+import { toast } from "react-toastify";
 //
 function CommentField({
   user,
@@ -69,6 +70,14 @@ function CommentField({
       commentsUpdate(params.threadID);
       if (calcCommentPageCount() > pageCount) setPage(calcCommentPageCount());
       else if (page !== calcCommentPageCount) setPage(calcCommentPageCount());
+      toast.success(`Comment has been posted successfuly.`, {
+        position: "bottom-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        draggable: true,
+        progress: 0,
+      });
     }
   };
   const validateLines = (e) => {

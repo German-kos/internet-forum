@@ -30,3 +30,15 @@
   /* border-radius: 16px; */
   box-shadow: rgba(53, 55, 71, 0.35) 0px 6px 15px;
 }
+.noCommentsOrThreads {
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 300%;
+  color: #53598d;
+}
+.embolden {
+  font-weight: bolder;
+  display: inline-block;
+  margin-right: 6px;
+}

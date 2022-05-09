@@ -6,7 +6,9 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import BasicInfo from "./BasicInfo";
 import MyThreads from "./MyThreads";
-
+import MyComments from "./MyComments";
+import { tabStyle } from "./CSS-Files/MuiTabStyle";
+//
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -50,16 +52,17 @@ function PersonalProfileCard({ user }) {
   return (
     <div className="personalProfileCard">
       <Box sx={{ width: "100%" }}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Box sx={tabStyle}>
           <Tabs
+            sx={{ fontFamily: "Poppins, sans-serif" }}
             value={value}
             onChange={handleChange}
-            aria-label="basic tabs example"
+            // aria-label="basic tabs example"
             centered
           >
-            <Tab label="Info" {...a11yProps(0)} />
-            <Tab label="My Threads" {...a11yProps(1)} />
-            <Tab label="My Comments" {...a11yProps(2)} />
+            <Tab sx={tabStyle} label="Info" {...a11yProps(0)} />
+            <Tab sx={tabStyle} label="My Threads" {...a11yProps(1)} />
+            <Tab sx={tabStyle} label="My Comments" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
@@ -69,7 +72,7 @@ function PersonalProfileCard({ user }) {
           <MyThreads user={user} />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          Item Three
+          <MyComments user={user} />
         </TabPanel>
       </Box>
     </div>

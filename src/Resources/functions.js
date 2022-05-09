@@ -16,6 +16,7 @@ export const getCurrentThread = (id) => {
 };
 //
 export const getThreads = (params) => {
+  // pass params to find the thread
   return JSON.parse(localStorage.getItem("threads")).find(
     (obj) => obj.threadID === parseInt(params.threadID)
   );
@@ -148,3 +149,21 @@ export const getCategoryName = (categoryID) => {
     (category) => parseInt(category.id) === parseInt(categoryID)
   ).category;
 };
+//
+export const getCommentsByUsername = (username) => {
+  // pass username to get all the comments the user has posted
+  return JSON.parse(localStorage.getItem("comments")).filter(
+    (comment) => comment.author.toLowerCase() === username.toLowerCase()
+  );
+};
+//
+export const getCategoryByCommentID = (comment) => {
+  // pass the comment obj to get the category id which the comment's thread belong to
+  const tempThread = JSON.parse(localStorage.getItem("threads")).find(
+    (thread) => parseInt(thread.threadID) === parseInt(comment.threadID)
+  );
+  return JSON.parse(localStorage.getItem("forums")).find(
+    (category) => parseInt(category.id) === parseInt(tempThread.categoryID)
+  ).id;
+};
+//
