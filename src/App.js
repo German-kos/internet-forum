@@ -7,6 +7,12 @@ import { getLoggedUser, isBanned } from "./Resources/functions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setBanData } from "./Resources/functions";
+import {
+  categories,
+  mockThreads,
+  mockComments,
+  mockPms,
+} from "./Resources/data";
 //
 function App() {
   const [user, setUser] = useState();
@@ -17,6 +23,30 @@ function App() {
     else setUser(undefined);
   };
   useEffect(async () => {
+    if (
+      localStorage.getItem("forums") === null ||
+      localStorage.getItem("forums") === undefined
+    ) {
+      localStorage.setItem("forums", JSON.stringify(categories));
+    }
+    if (
+      localStorage.getItem("threads") === null ||
+      localStorage.getItem("threads") === undefined
+    ) {
+      localStorage.setItem("threads", JSON.stringify(mockThreads));
+    }
+    if (
+      localStorage.getItem("comments") === null ||
+      localStorage.getItem("comments") === undefined
+    ) {
+      localStorage.setItem("comments", JSON.stringify(mockComments));
+    }
+    if (
+      localStorage.getItem("pms") === null ||
+      localStorage.getItem("pms") === undefined
+    ) {
+      localStorage.setItem("pms", JSON.stringify(mockPms));
+    }
     const usersData = await axios.get("/files/users.json");
     const recieveData = usersData.data.map((item) => {
       delete item.password;
@@ -26,9 +56,10 @@ function App() {
     checkForUser();
     //
     setUsers(recieveData);
-    // if(localStorage.getItem("users") === null)
     localStorage.setItem("usersList", JSON.stringify(recieveData));
     setBanData();
+    //
+    //
   }, []);
   useEffect(async () => {
     // const tempLoggedUser = getLoggedUser()

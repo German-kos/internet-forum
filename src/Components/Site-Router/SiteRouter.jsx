@@ -2,7 +2,6 @@ import { Routes, Route, Link, BrowserRouter, Navigate } from "react-router-dom";
 import SignIn from "../sign-in-page/sign-in";
 // import PublicProfileCard from "../Profile/PublicProfileCard";
 import PersonalProfileCard from "../Profile/PersonalProfileCard";
-import PublicProfileOthers from "../Profile/PublicProfileOthers";
 import Layout from "../Landing-Page/Layout";
 import Forums from "../Forum/Forums";
 import ThreadsList from "../Forum/ThreadsList";
@@ -10,10 +9,12 @@ import Threads from "../Forum/Threads";
 import Loading from "../../Resources/Loading";
 import UserList from "../Admin-Tools/UserList";
 import { getLoggedUser } from "../../Resources/functions";
+import PageNotFound from "./PageNotFound";
+import PublicProfileCard from "../Profile/PublicProfileCard";
+import Messages from "../Private-Messages/Messages";
 // import LayoutTest from "../Landing-Page/Layout";
 
 function SiteRouter({ user, setUser, users }) {
-  const currUser = getLoggedUser();
   return (
     <BrowserRouter>
       <Routes>
@@ -37,19 +38,29 @@ function SiteRouter({ user, setUser, users }) {
               )
             }
           />
-          <Route path="/aaa" element={<UserList />} />
+          {/* <Route path="/aaa" element={<UserList />} /> */}
           <Route path="/user" element={<Navigate to="/" />} />
-          <Route path={`/user/:userID`} element={<PublicProfileOthers />} />
           <Route
-            path="/userslist"
+            path={`/user/:userID`}
+            element={<PublicProfileCard loggedUser={user} />}
+          />
+          <Route
+            path="/pms"
             element={
-              currUser !== null && currUser.admin ? (
-                <UserList user={user} />
+              user !== null ? (
+                <Messages user={user} />
               ) : (
-                <Navigate to="/" />
+                <Navigate to="/login" />
               )
             }
           />
+          <Route
+            path="/userslist"
+            element={
+              user?.admin ? <UserList user={user} /> : <Navigate to="/" />
+            }
+          />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
         <Route
           path="/login"

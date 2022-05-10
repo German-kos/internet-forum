@@ -6,7 +6,13 @@ import ListItem from "@mui/material/ListItem";
 import { useNavigate, Outlet } from "react-router-dom";
 import "../../App.css";
 import MenuIcon from "@mui/icons-material/Menu";
-import { IconButton, AppBar, Toolbar, Typography } from "@mui/material";
+import {
+  IconButton,
+  AppBar,
+  Toolbar,
+  Typography,
+  Divider,
+} from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Greeter from "./Greeter";
 import SearchBar from "../Forum/SearchBar";
@@ -16,8 +22,12 @@ import "./Layout.css";
 import { createTheme } from "@mui/system";
 import { ThemeProvider } from "styled-components";
 import { buttonStyle } from "./LayoutMuiStyle";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import PersonIcon from "@mui/icons-material/Person";
+import { listStyle } from "./LayoutMuiStyle";
+import HomeIcon from "@mui/icons-material/Home";
+import MailIcon from "@mui/icons-material/Mail";
 //
-// const ThreadContext = React.createContext();
 const theme = createTheme({
   components: {
     Button: {
@@ -78,6 +88,11 @@ function Layout({ user, setUser, users, children }) {
     closeDrawer();
     return navigate("/userslist");
   };
+  //
+  const handleMsgClick = () => {
+    closeDrawer();
+    return navigate("/pms");
+  };
   return (
     <ThreadContextProvider>
       <ThemeProvider theme={theme}>
@@ -136,26 +151,40 @@ function Layout({ user, setUser, users, children }) {
               "& .MuiDrawer-paper": {
                 width: drawerWidth,
                 boxSizing: "border-box",
+                backgroundColor: "#DBDEFA",
               },
             }}
             anchor="left"
             open={state["left"]}
             onClose={toggleDrawer("left", false)}
           >
-            <List>
+            <List sx={listStyle}>
               <ListItem button onClick={toggleDrawer("left", false)}>
                 <ArrowBackIosIcon />
               </ListItem>
+              <Divider />
               <ListItem button onClick={handleHomeClick}>
+                <HomeIcon sx={{ marginRight: "4px" }} />
                 Home
               </ListItem>
+              <Divider />
               <ListItem button onClick={handleProfileClick}>
+                <PersonIcon sx={{ marginRight: "4px" }} />
                 Profile
               </ListItem>
+              <Divider />
+              <ListItem button onClick={handleMsgClick}>
+                <MailIcon sx={{ marginRight: "4px" }} />
+                Messages
+              </ListItem>
               {user?.admin ? (
-                <ListItem button onClick={handleUsersListClick}>
-                  Users List
-                </ListItem>
+                <>
+                  <Divider />
+                  <ListItem button onClick={handleUsersListClick}>
+                    <FormatListBulletedIcon sx={{ marginRight: "4px" }} />
+                    Users List
+                  </ListItem>
+                </>
               ) : null}
             </List>
           </Drawer>

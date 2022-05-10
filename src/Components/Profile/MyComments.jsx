@@ -22,7 +22,6 @@ function MyComments({ user }) {
   //
   useEffect(() => {
     setUserComments(getCommentsByUsername(user.username).reverse());
-    console.log(getCommentsByUsername(user.username));
   }, []);
   //
   useEffect(() => {
@@ -42,7 +41,6 @@ function MyComments({ user }) {
     setPage(value);
   };
   //
-  console.log(userComments);
   return (
     <div>
       {userComments?.length === 0 ? (

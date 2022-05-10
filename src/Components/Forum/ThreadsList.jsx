@@ -22,7 +22,6 @@ import { Divider, IconButton, Pagination } from "@mui/material";
 import { buttonStyle } from "./NewThreadMuiStyle";
 import { paginationStyle } from "./ThreadsListMuiStyle";
 //
-//
 function ThreadsList({ user }) {
   const [allThreads, setAllThreads] = useState();
   const [currentThreads, setCurrentThreads] = useState();

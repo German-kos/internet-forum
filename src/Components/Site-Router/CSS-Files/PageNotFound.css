@@ -1,0 +1,21 @@
+.container404 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.mainDiv {
+  font-size: 400%;
+  color: #53598d;
+}
+.secondaryDiv {
+  font-size: 200%;
+  text-decoration-line: underline;
+}
+.secondaryDiv:hover {
+  cursor: pointer;
+}

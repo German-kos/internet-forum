@@ -35,7 +35,6 @@ function MyThreads({ user }) {
     setPage(value);
   };
   //
-  console.log(userThreads);
   return (
     <div>
       {userThreads?.length === 0 ? (

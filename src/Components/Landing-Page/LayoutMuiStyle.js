@@ -15,3 +15,6 @@ export const buttonStyle = [
     },
   },
 ];
+export const listStyle = {
+  backgroundColor: "#DBDEFA",
+};

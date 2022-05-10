@@ -37,25 +37,13 @@ function Forums({ user }) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    setForums(JSON.parse(localStorage.getItem("forums")));
     if (
       localStorage.getItem("forums") === null ||
       localStorage.getItem("forums") === undefined
     ) {
       localStorage.setItem("forums", JSON.stringify(categories));
     }
-    if (
-      localStorage.getItem("threads") === null ||
-      localStorage.getItem("threads") === undefined
-    ) {
-      localStorage.setItem("threads", JSON.stringify(mockThreads));
-    }
-    if (
-      localStorage.getItem("comments") === null ||
-      localStorage.getItem("comments") === undefined
-    ) {
-      localStorage.setItem("comments", JSON.stringify(mockComments));
-    }
+    setForums(JSON.parse(localStorage.getItem("forums")));
   }, []);
   //
   const handleClick = (e, eCategory) => {

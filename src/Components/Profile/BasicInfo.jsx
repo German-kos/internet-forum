@@ -5,11 +5,17 @@ import {
   numberOfComments,
   numberOfThreads,
 } from "../../Resources/functions";
+import SendMessage from "../Private-Messages/SendMessage";
 
-function BasicInfo({ user }) {
+function BasicInfo({ user, loggedUser }) {
   const isUserDefined = () => {
     return user !== undefined;
   };
+  //
+  const checkUser = () => {
+    return loggedUser !== undefined && loggedUser?.userID !== user?.userID;
+  };
+  // console.log(checkUser());
   return (
     <Box>
       <div className="basicInfo">
@@ -17,7 +23,10 @@ function BasicInfo({ user }) {
         <div className="basicInfoText">
           <div className="basicInfoUsername">{user?.username}</div>
           <div className="basicInfoFullname">
-            {user?.fname} {user?.lname}
+            {user?.fname} {user?.lname}{" "}
+            {checkUser() ? (
+              <SendMessage recipient={user} sender={loggedUser} />
+            ) : null}
           </div>
         </div>
       </div>

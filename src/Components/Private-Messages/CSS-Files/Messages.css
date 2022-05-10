@@ -1,0 +1,65 @@
+.messagesContainer {
+  border: 2px solid #797eab;
+  border-radius: 16px;
+  background-color: #b9bcd6;
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  min-width: 350px;
+  justify-content: center;
+  margin: auto;
+}
+.pmContainer {
+  border: 2px solid #797eab;
+  border-radius: 16px;
+  padding: 1% 1% 1% 1%;
+  margin-bottom: 1%;
+  background-color: #dbdefa;
+  transition-duration: 2s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.embolden {
+  font-weight: bolder;
+  display: inline-block;
+  margin-right: 6px;
+}
+.pmInfoContainer {
+  display: flex;
+  flex-direction: column;
+}
+.pmTitle {
+  font-size: 125%;
+}
+.pmFormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px 12px;
+}
+.pmButtonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.pmButton {
+  /* font-family: Poppins, sans-serif; */
+  font-size: 125%;
+  width: 150px;
+  background-color: #3f50b5;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  /* border-color: white; */
+  transition-duration: 0.2s;
+  /* size: 200%; */
+  /* size: 200%; */
+}
+.pmButton:hover {
+  cursor: pointer;
+  transition-duration: 0.2s;
+  transform: scale(1.05);
+  box-shadow: rgba(224, 224, 224, 0.35) 0px 6px 15px;
+}

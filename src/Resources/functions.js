@@ -167,3 +167,23 @@ export const getCategoryByCommentID = (comment) => {
   ).id;
 };
 //
+export const getUserByID = (id) => {
+  // pass a user's ID to get an obj with the user's details
+  return JSON.parse(localStorage.getItem("usersList")).find(
+    (user) => parseInt(user.userID) === parseInt(id)
+  );
+};
+//
+export const getPmByUserID = (id) => {
+  // pass a user's ID to get their recieved PMs
+  return JSON.parse(localStorage.getItem("pms")).filter(
+    (pm) => parseInt(pm.recipientID) === parseInt(id)
+  );
+};
+//
+export const getPmByRecipientID = (id) => {
+  // pass the recipient's ID to get the PMs they've sent
+  return JSON.parse(localStorage.getItem("pms")).filter(
+    (pm) => parseInt(pm.senderID) === parseInt(id)
+  );
+};

@@ -172,3 +172,32 @@ export const banData = [
     reason: "profanity",
   },
 ];
+export const mockPms = [
+  {
+    senderID: 0,
+    recipientID: 1,
+    title: "A message from the Administrator",
+    content: "Hello, John1.",
+    read: false,
+    time: "16 / 04 / 2022, 14: 22",
+    pmID: 0,
+  },
+  {
+    senderID: 0,
+    recipientID: 2,
+    title: "A message from the Administrator",
+    content: "Hello, jane1.",
+    read: false,
+    time: "16 / 04 / 2022, 14: 22",
+    pmID: 1,
+  },
+  {
+    senderID: 0,
+    recipientID: 3,
+    title: "A message from the Administrator",
+    content: "Hello, Banned.",
+    read: false,
+    time: "16 / 04 / 2022, 14: 22",
+    pmID: 2,
+  },
+];
