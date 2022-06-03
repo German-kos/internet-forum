@@ -36,7 +36,6 @@ function UserList() {
     setFilteredList(recieveData);
   };
   const onInputChange = (e) => {
-    console.log(e.target.value);
     setInput(e.target.value);
     setFilteredList(
       userList.filter((x) => {

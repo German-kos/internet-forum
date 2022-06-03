@@ -1,9 +1,8 @@
 import { React, useState, useEffect } from "react";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import "./App.css";
 import SiteRouter from "./Components/Site-Router/SiteRouter";
-import Layout from "./Components/Landing-Page/Layout.jsx";
-import { getLoggedUser, isBanned } from "./Resources/functions";
+import { isBanned } from "./Resources/functions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { setBanData } from "./Resources/functions";
@@ -13,7 +12,6 @@ import {
   mockComments,
   mockPms,
 } from "./Resources/data";
-import Footer from "./Components/Landing-Page/Footer";
 //
 function App() {
   const [user, setUser] = useState();
@@ -63,7 +61,6 @@ function App() {
     //
   }, []);
   useEffect(async () => {
-    // const tempLoggedUser = getLoggedUser()
     const tempUser = await axios
       .get("/files/users.json")
       .then((res) =>
@@ -90,7 +87,6 @@ function App() {
         draggable
         limit={1}
       />
-      {/* <Footer /> */}
     </div>
   );
 }

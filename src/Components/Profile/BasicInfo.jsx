@@ -1,6 +1,7 @@
 import "./CSS-Files/ProfileCards.css";
 import { Avatar, Box } from "@mui/material";
 import {
+  getLoggedUser,
   isBanned,
   numberOfComments,
   numberOfThreads,
@@ -15,7 +16,6 @@ function BasicInfo({ user, loggedUser }) {
   const checkUser = () => {
     return loggedUser !== undefined && loggedUser?.userID !== user?.userID;
   };
-  // console.log(checkUser());
   return (
     <Box>
       <div className="basicInfo">
@@ -38,10 +38,12 @@ function BasicInfo({ user, loggedUser }) {
             {user?.admin ? "Administrator" : "Regular User"}
           </p>
         </div>
-        <div className="infoRows">
-          <p className="infoTag">Email Address:</p>
-          <p className="infoContent">{user?.email}</p>
-        </div>
+        {user?.username === getLoggedUser()?.username ? (
+          <div className="infoRows">
+            <p className="infoTag">Email Address:</p>
+            <p className="infoContent">{user?.email}</p>
+          </div>
+        ) : null}
         <div className="infoRows">
           <p className="infoTag">Threads Created:</p>
           <p className="infoContent">

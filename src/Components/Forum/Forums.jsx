@@ -47,8 +47,6 @@ function Forums({ user }) {
   //
   const removeCategory = (e, category) => {
     e.stopPropagation();
-    console.log(e);
-    console.log(category);
     Swal.fire({
       title: `Are you sure you want to remove '${category.category}' ?`,
       text: `All threads and comments relating to '${category.category}' will be removed as well. `,

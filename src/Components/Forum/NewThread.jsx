@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { useEffect } from "react";
@@ -42,9 +41,6 @@ function NewThread({
     if (user !== null && user !== undefined) {
       let temp = allThreads;
       let temp2 = JSON.parse(localStorage.getItem("threads"));
-      let currentThreadsTemp = getAllThreadsByCategoryID(
-        parseInt(params.categoryID)
-      );
       let newThread;
       const options = {
         year: "numeric",
@@ -83,7 +79,6 @@ function NewThread({
       temp2.push(newThread);
       localStorage.setItem("threads", JSON.stringify(temp2));
       setAllThreads(temp);
-      console.log();
       setCurrentThreads(
         getAllThreadsByCategoryID(parseInt(params.categoryID)).slice().reverse()
       );

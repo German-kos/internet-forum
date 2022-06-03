@@ -27,8 +27,6 @@ function SendMessage({ recipient, sender }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     let allPms = JSON.parse(localStorage.getItem("pms"));
-    console.log(recipient);
-    console.log(sender);
     //
     const options = {
       year: "numeric",

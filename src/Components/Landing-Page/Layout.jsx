@@ -6,18 +6,10 @@ import ListItem from "@mui/material/ListItem";
 import { useNavigate, Outlet } from "react-router-dom";
 import "../../App.css";
 import MenuIcon from "@mui/icons-material/Menu";
-import {
-  IconButton,
-  AppBar,
-  Toolbar,
-  Typography,
-  Divider,
-  CardMedia,
-} from "@mui/material";
+import { IconButton, AppBar, Toolbar, Divider } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Greeter from "./Greeter";
 import SearchBar from "../Forum/SearchBar";
-import { useContext } from "react";
 import { ThreadContextProvider } from "../../Resources/Context-Providers/ThreadContextProvider";
 import "./Layout.css";
 import { createTheme } from "@mui/system";
@@ -29,8 +21,8 @@ import { listStyle } from "./LayoutMuiStyle";
 import HomeIcon from "@mui/icons-material/Home";
 import MailIcon from "@mui/icons-material/Mail";
 import Footer from "./Footer";
-import GavelIcon from "@mui/icons-material/Gavel";
 import { Gavel } from "@mui/icons-material";
+//
 //
 const theme = createTheme({
   components: {
@@ -108,21 +100,14 @@ function Layout({ user, setUser, users, children }) {
         <ThemeProvider theme={theme}>
           <div
             style={{
-              // verticalAlign: "middle",
               display: "flex",
               flexDirection: "row",
-              // alignItems: "center",
-              // alignContent: "center",
-              // alignItems: "center",
-              // justifyContent: "center",
               margin: "0px",
               padding: "0px",
             }}
           >
             <AppBar
               sx={{
-                // verticalAlign: "middle",
-                // alignSelf: "center",
                 backgroundColor: "#53598d",
                 display: "flex",
                 justifyContent: "space-between",
@@ -139,11 +124,6 @@ function Layout({ user, setUser, users, children }) {
                     <MenuIcon />
                   </IconButton>
                   <img src={"./files/Images/asdf.png"} />
-                  {/* <CardMedia
-                    component="img"
-                    height="140"
-                    image={"./files/Images/asdf.png"}
-                  /> */}
                 </div>
                 <IconButton
                   color="inherit"
@@ -160,7 +140,6 @@ function Layout({ user, setUser, users, children }) {
                 </div>
                 <div
                   style={{ display: "flex", flexDireciton: "row", gap: "8px" }}
-                  //  style={{ float: "right", marginLeft: "auto" }}
                 >
                   <Greeter user={user} />
                   {user === undefined ? (

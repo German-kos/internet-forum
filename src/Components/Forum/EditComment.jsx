@@ -20,7 +20,6 @@ function EditComment({ comment }) {
   const commentsUpdate = React.useContext(CommentsUpdateContext);
 
   const handleClickOpen = (e) => {
-    console.log(e);
     setOpen(true);
   };
 
@@ -42,7 +41,6 @@ function EditComment({ comment }) {
   const submitChanges = (e) => {
     e.preventDefault();
     let temp = getAllComments();
-    console.log(e);
     if (
       e.target[0].value !== comment.comment &&
       e.target[0].value.trim() !== ""
@@ -54,8 +52,6 @@ function EditComment({ comment }) {
       temp[commentIndex].editted = true;
       localStorage.setItem("comments", JSON.stringify(temp));
       commentsUpdate(comment.threadID);
-      console.log(commentIndex);
-      console.log(temp);
       toast.success(`Comment has been changed successfully.`, {
         position: "bottom-right",
         autoClose: 1500,

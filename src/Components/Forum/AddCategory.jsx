@@ -34,16 +34,12 @@ function AddCategory({ setForums }) {
   //
   const addCategory = (e) => {
     e.preventDefault();
-    console.log(e.target[0].value);
-    console.log(e.target[2].value);
-    console.log(e.target[5].value);
     if (
       e.target[0].value !== "" &&
       e.target[2].value !== "" &&
       e.target[5].value !== ""
     ) {
       let tempCategories = getCategories();
-      console.log(tempCategories);
       if (tempCategories.length >= 1) {
         tempCategories.push({
           category: e.target[0].value,

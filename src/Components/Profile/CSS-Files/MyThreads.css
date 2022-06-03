@@ -9,15 +9,6 @@
   flex-direction: row;
   justify-content: space-between;
 }
-/* .threadCard:hover {
-  transform: scale(1);
-}
-.container {
-  display: flex;
-}
-.container :hover {
-  transform: scale(1.1);
-} */
 .cont {
   border-radius: 16px;
   transition-duration: 0.2s;

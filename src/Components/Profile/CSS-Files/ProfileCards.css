@@ -7,7 +7,6 @@
   min-width: 350px;
   justify-content: center;
   margin: auto;
-  /* background-color: #c9cef8; */
   background-color: #b9bcd6;
 }
 .basicInfo {
@@ -16,22 +15,17 @@
   align-items: center;
   flex-direction: column;
   padding: 1% 1% 1% 1%;
-  /* border: 1px solid gray; */
-  /* border-radius: 16px; */
 }
 .basicInfoText {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* margin-left: 16px; */
 }
 .basicInfoUsername {
-  /* color: #f0f1ff; */
   font-size: 300%;
 }
 .basicInfoFullname {
-  /* color: #dbdefaa8; */
   font-size: 175%;
   color: gray;
   display: flex;
@@ -40,7 +34,6 @@
 }
 .information {
   font-size: larger;
-  /* color: #dbdefa; */
   display: flex;
   flex-direction: column;
   column-gap: 1px;

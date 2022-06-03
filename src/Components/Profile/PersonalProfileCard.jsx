@@ -57,7 +57,6 @@ function PersonalProfileCard({ user }) {
             sx={{ fontFamily: "Poppins, sans-serif" }}
             value={value}
             onChange={handleChange}
-            // aria-label="basic tabs example"
             centered
           >
             <Tab sx={tabStyle} label="Info" {...a11yProps(0)} />

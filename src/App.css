@@ -41,8 +41,6 @@
   position: static;
 }
 .threadsContainer {
-  /* position:relative;
-  max-width: 1000px; */
   width: 50%;
   margin: 0 auto;
 }
@@ -101,7 +99,6 @@
 .commentAuthor:hover {
   color: rgb(27, 67, 175);
   cursor: pointer;
-  /* text-decoration: underline; */
 }
 .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
   background-color: #6d6d6d;
@@ -129,10 +126,8 @@
 }
 .profileContainerAvatar {
   display: flex;
-  /* padding-left: 5px; */
   align-items: center;
 
-  /* margin-left: 5px; */
   gap: 5px;
 }
 .appBackground {

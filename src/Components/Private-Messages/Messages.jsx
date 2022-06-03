@@ -1,15 +1,13 @@
 import "./CSS-Files/Messages.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { tabStyle } from "../Profile/CSS-Files/MuiTabStyle";
 import RecievedMessages from "./RecievedMessages";
 import SentMessages from "./SentMessages";
-import { getLoggedUser, getPmByUserID } from "../../Resources/functions";
 //
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

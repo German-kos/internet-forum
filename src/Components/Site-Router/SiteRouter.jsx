@@ -1,14 +1,11 @@
-import { Routes, Route, Link, BrowserRouter, Navigate } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import SignIn from "../sign-in-page/sign-in";
-// import PublicProfileCard from "../Profile/PublicProfileCard";
 import PersonalProfileCard from "../Profile/PersonalProfileCard";
 import Layout from "../Landing-Page/Layout";
 import Forums from "../Forum/Forums";
 import ThreadsList from "../Forum/ThreadsList";
 import Threads from "../Forum/Threads";
-import Loading from "../../Resources/Loading";
 import UserList from "../Admin-Tools/UserList";
-import { getLoggedUser } from "../../Resources/functions";
 import PageNotFound from "./PageNotFound";
 import PublicProfileCard from "../Profile/PublicProfileCard";
 import Messages from "../Private-Messages/Messages";
@@ -39,7 +36,6 @@ function SiteRouter({ user, setUser, users }) {
             }
           />
           <Route path="/guidelines" element={<Guidelines />} />
-          {/* <Route path="/aaa" element={<UserList />} /> */}
           <Route path="/user" element={<Navigate to="/" />} />
           <Route
             path={`/user/:userID`}

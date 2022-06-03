@@ -1,10 +1,6 @@
 import * as React from "react";
 import { useEffect, useState, useContext } from "react";
-import {
-  addViewsToThread,
-  getAllThreads,
-  getCategoryName,
-} from "../../Resources/functions";
+import { addViewsToThread, getAllThreads } from "../../Resources/functions";
 import { useNavigate } from "react-router-dom";
 import {
   ThreadUpdateContext,

@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Navigate, useParams, useNavigate } from "react-router-dom";
-import Loading from "../../Resources/Loading";
-import { Avatar, Button, createTheme } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Avatar, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import "../../App.css";
-import { color } from "@mui/system";
 import NewThread from "./NewThread";
 import { toast } from "react-toastify";
 import {
@@ -190,15 +188,6 @@ function ThreadsList({ user }) {
             </div>
           );
         })}
-        {/* <div */}
-        {/* // style={{
-        //   position: "fixed",
-        //   bottom: "8px",
-        //   right: "auto",
-        //   left: "50%",
-        // }} */}
-        {/* // > */}
-        {/* // </div> */}
         <Pagination
           sx={paginationStyle}
           variant="outlined"

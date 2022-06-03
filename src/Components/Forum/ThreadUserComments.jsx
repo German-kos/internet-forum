@@ -5,7 +5,6 @@ import {
 import Swal from "sweetalert2";
 import { useContext, useEffect } from "react";
 import {
-  getCommentsByThreadID,
   getAllComments,
   getAllThreads,
   userPfp,
@@ -14,7 +13,6 @@ import { Divider, Avatar } from "@mui/material";
 import { IconButton } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import EditComment from "./EditComment";
-import { Edit } from "@mui/icons-material";
 import { toast } from "react-toastify";
 //
 function ThreadUserComments({ user, handleUserClick, params, page, setPage }) {
@@ -43,7 +41,6 @@ function ThreadUserComments({ user, handleUserClick, params, page, setPage }) {
           return x.commentID !== e.commentID;
         });
         localStorage.setItem("comments", JSON.stringify(temp));
-        // setAllComments(temp);
         commentsUpdate(params.threadID);
         let tempThreads = getAllThreads();
         const threadIndex = tempThreads.findIndex(
