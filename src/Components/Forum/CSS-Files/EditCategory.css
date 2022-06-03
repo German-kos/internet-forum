@@ -1,7 +1,6 @@
 .dialogBox {
   display: flex;
   flex-direction: column;
-  /* column-gap: 12px; */
   gap: 12px;
 }
 .formContainer {

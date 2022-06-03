@@ -1,5 +1,3 @@
-import { createTheme } from "@mui/system";
-//
 export const center = {
   display: "flex",
   justifyContent: "center",
@@ -14,10 +12,8 @@ export const categoryCard = [
     minHeight: "350px",
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "#E2E2E2",
     transition: "all 0.2s",
     transform: "scale(1)",
-    // alignItems: "center",
   },
   {
     ":hover": {
@@ -38,7 +34,6 @@ export const forumCardTitle = {
   fontWeight: "bolder",
   fontSize: "200%",
   color: "#53598D",
-  // textAlign: "center",
 };
 //
 export const forumCardInfo = {

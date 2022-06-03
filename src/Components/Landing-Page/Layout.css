@@ -1,5 +1,8 @@
 .layoutBody {
   background-color: #dbdefa;
+  min-height: calc(100vh - 220px);
+  margin-top: 64px;
+  padding-top: 10px;
 }
 .signButton {
   background-color: #dbdefa;
@@ -9,4 +12,12 @@
 }
 .Button {
   background-color: #dbdefa;
+}
+.footerStyle {
+  background-color: #8e92b8;
+  border-top: 1px solid black;
+  width: 100%;
+  margin: 16px 0px 0px 0px;
+  min-height: 50px;
+  position: absolute;
 }

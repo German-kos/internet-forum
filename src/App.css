@@ -7,25 +7,16 @@
   margin-left: 10px;
 }
 .threadCards {
-  /* display: flex;
-  border: 1px solid rgb(48, 48, 48);
-  border-radius: 22px;
-  font-weight: bolder;
-  margin-top: 1%;
-  padding: 0.5%;
-  align-items: center;
-  margin-top: 10px;
-  white-space: pre-wrap; */
   background-color: rgb(128, 128, 128, 0.2);
   margin-bottom: 10px;
   padding: 5px 5px 5px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 2.5px 7.5px;
   min-width: 500px;
-  max-width: 800px;
   transition-duration: 0.2s;
   transform: scale(1);
   backface-visibility: hidden;
+  margin-right: 0px;
 }
 .threadCards:hover {
   backface-visibility: hidden;
@@ -42,6 +33,7 @@
 .threadCardTitle {
   font-size: larger;
   font-weight: bolder;
+  word-wrap: break-word;
 }
 .siteContainer {
   max-width: 1000px;
@@ -72,7 +64,6 @@
   padding-right: 3px;
   border-radius: 5px;
   min-width: 500px;
-  max-width: 800px;
   background-color: rgb(128, 128, 128, 0.2);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -87,7 +78,6 @@
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 2.5px 7.5px;
   min-width: 500px;
-  max-width: 800px;
 }
 .commentUserInfo {
   display: flex;
@@ -102,6 +92,7 @@
   white-space: pre-wrap;
   margin-bottom: 5px;
   min-height: 30px;
+  word-wrap: break-word;
 }
 .commentAuthor {
   font-weight: bolder;

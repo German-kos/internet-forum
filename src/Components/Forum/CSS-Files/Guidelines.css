@@ -1,0 +1,7 @@
+.guidelinesContainer {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  word-wrap: break-word;
+}

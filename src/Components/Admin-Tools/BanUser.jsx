@@ -1,9 +1,7 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { TextField } from "@mui/material";
@@ -29,7 +27,6 @@ function BanUser({ banList, setBanList, triggerStateUpdate, user }) {
     const userIndex = banList.findIndex(
       (u) => parseInt(u.userID) === parseInt(user.userID)
     );
-    // console.log(e.target[0].value);
     const tempBanList = banList;
     tempBanList[userIndex].ban = true;
     tempBanList[userIndex].reason = e.target[0].value;

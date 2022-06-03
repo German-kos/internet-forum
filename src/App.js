@@ -13,6 +13,7 @@ import {
   mockComments,
   mockPms,
 } from "./Resources/data";
+import Footer from "./Components/Landing-Page/Footer";
 //
 function App() {
   const [user, setUser] = useState();
@@ -89,6 +90,7 @@ function App() {
         draggable
         limit={1}
       />
+      {/* <Footer /> */}
     </div>
   );
 }

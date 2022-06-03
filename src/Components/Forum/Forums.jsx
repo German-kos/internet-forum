@@ -6,7 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Loading from "../../Resources/Loading";
 import { useNavigate } from "react-router-dom";
-import { categories, mockThreads, mockComments } from "../../Resources/data";
+import { categories } from "../../Resources/data";
 import {
   categoryCard,
   forumCardTitle,
@@ -14,27 +14,22 @@ import {
   forumCardInfo,
   siteFont,
 } from "./ForumMuiStyle";
-// import EditCategory from "./EditCategory";
 import { IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import Swal from "sweetalert2";
 import EditCategory from "./EditCategory";
 import ClearIcon from "@mui/icons-material/Clear";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import {
   getAllComments,
   getAllThreads,
   getAllThreadsByCategoryID,
   getCategories,
-  getThreads,
 } from "../../Resources/functions";
 import AddCategory from "./AddCategory";
-import { createTheme, ThemeProvider } from "@mui/material";
 import "./CSS-Files/Forums.css";
 //
 function Forums({ user }) {
   const [forums, setForums] = useState([]);
-  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (
@@ -83,7 +78,6 @@ function Forums({ user }) {
           return x.categoryID !== category.id;
         });
         localStorage.setItem("threads", JSON.stringify(tempThreads));
-        // Swal.fire("Deleted!", "Your file has been deleted.", "success");
         toast.success(`${category.category} has been removed successfuly.`, {
           position: "bottom-right",
           autoClose: 1500,

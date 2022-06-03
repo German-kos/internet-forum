@@ -1,9 +1,6 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { IconButton, TextField } from "@mui/material";
@@ -23,20 +20,13 @@ function EditCategory({ category, setForums }) {
     e.preventDefault();
     e.stopPropagation();
     setOpen(true);
-    // console.log(category);
   };
   //
   const handleClose = (e) => {
-    // e.preventDefault();
-    // e.stopPropagation();
     setOpen(false);
   };
   //
   const submitChanges = (e) => {
-    //input 1 e.target[0].value
-    //input 2 e.target[2].value
-    //input 3 e.target[5].value
-    // e.stopPropagation();
     e.preventDefault();
     if (
       e.target[0].value !== "" &&
@@ -73,9 +63,6 @@ function EditCategory({ category, setForums }) {
   //
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Slide in alert dialog
-      </Button> */}
       <IconButton onClick={handleClickOpen}>
         <EditIcon />
       </IconButton>
@@ -124,10 +111,6 @@ function EditCategory({ category, setForums }) {
             </form>
           </div>
         </DialogContent>
-        {/* <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>Agree</Button>
-        </DialogActions> */}
       </Dialog>
     </div>
   );

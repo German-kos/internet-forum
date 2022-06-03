@@ -1,0 +1,31 @@
+.searchBarLI {
+  display: flex;
+  list-style-type: none;
+  background-color: #eee;
+  border: solid 1px;
+  border-top: none;
+  padding: 0.25ch;
+  gap: 0.25ch;
+  width: 87.1%;
+  color: black;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  word-wrap: break-word;
+  width: 300px;
+  overflow: hidden;
+}
+.searchBarLI:hover {
+  cursor: pointer;
+  background-color: aliceblue;
+}
+.searchBarLIContainer {
+  position: absolute;
+  width: 340px;
+  max-width: 340;
+  margin: 0px;
+  word-wrap: break-word;
+}
+.searchBar {
+  float: right;
+  margin-left: auto;
+}

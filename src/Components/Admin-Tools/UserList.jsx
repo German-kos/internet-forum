@@ -1,15 +1,13 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getLoggedUser } from "../../Resources/functions";
 import { Avatar } from "@mui/material";
 import "./AdminTools.css";
-import { Button } from "@mui/material";
-// import { Button } from "bootstrap";
 import BanUser from "./BanUser";
 import UnbanUser from "./UnbanUser";
 //
-function UserList({ user }) {
+function UserList() {
   const navigate = useNavigate();
   const [userList, setUserList] = useState();
   const [filteredList, setFilteredList] = useState();
@@ -92,15 +90,21 @@ function UserList({ user }) {
                         ? "Suspended"
                         : null}
                     </div>
+                    {banList?.find(
+                      (u) => parseInt(u.userID) === parseInt(x.userID)
+                    ).ban
+                      ? `Reason: ${
+                          banList?.find(
+                            (u) => parseInt(u.userID) === parseInt(x.userID)
+                          ).reason
+                        }`
+                      : null}
                   </div>
                 </div>
                 <div>
                   {banList?.find(
                     (u) => parseInt(u.userID) === parseInt(x.userID)
                   ).ban ? (
-                    // <Button variant="contained" onClick={() => unban(x)}>
-                    //   Unban
-                    // </Button>
                     <UnbanUser
                       banList={banList}
                       setBanList={setBanList}
@@ -108,9 +112,6 @@ function UserList({ user }) {
                       user={x}
                     />
                   ) : (
-                    // <Button variant="contained" onClick={() => ban(x)}>
-                    //   Ban
-                    // </Button>
                     <BanUser
                       banList={banList}
                       setBanList={setBanList}

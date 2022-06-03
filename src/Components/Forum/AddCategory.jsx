@@ -1,11 +1,9 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Icon, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import "./CSS-Files/EditCategory.css";
 import { getCategories } from "../../Resources/functions";
 import Swal from "sweetalert2";
@@ -46,7 +44,6 @@ function AddCategory({ setForums }) {
     ) {
       let tempCategories = getCategories();
       console.log(tempCategories);
-      // console.log(tempCategories);
       if (tempCategories.length >= 1) {
         tempCategories.push({
           category: e.target[0].value,
@@ -65,7 +62,6 @@ function AddCategory({ setForums }) {
       localStorage.setItem("forums", JSON.stringify(tempCategories));
       setForums(tempCategories);
       handleClose();
-      // Swal.fire("Added!", "Category has been added.", "success");
       toast.success(
         `${
           tempCategories[tempCategories.length - 1].category

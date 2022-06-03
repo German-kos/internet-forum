@@ -10,7 +10,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
-  getAllComments,
   getLoggedUser,
   getAllThreadsByCategoryID,
 } from "../../Resources/functions";
@@ -18,7 +17,6 @@ import { TextField } from "@mui/material";
 import { validateLines } from "../../Resources/functions";
 import "../../App.css";
 import { toast } from "react-toastify";
-import { buttonStyle } from "./ForumMuiStyle";
 //
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -26,17 +24,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 function NewThread({
   user,
-  createThread,
   params,
   handleClose,
-  handleClickOpen,
   open,
   allThreads,
   setAllThreads,
   setCurrentThreads,
-  setPageCount,
-  currentThreads,
-  postsPerPage,
 }) {
   const [loggedUser, setLoggedUser] = useState();
   useEffect(() => {

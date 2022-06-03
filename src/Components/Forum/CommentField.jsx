@@ -3,7 +3,6 @@ import {
   getAllComments,
   getAllThreads,
   getComments,
-  calcCommentPageCount,
 } from "../../Resources/functions";
 import "../../App.css";
 import { CommentsUpdateContext } from "../../Resources/Context-Providers/ThreadContextProvider";
@@ -13,8 +12,6 @@ import { toast } from "react-toastify";
 function CommentField({
   user,
   params,
-  setComments,
-  setAllComments,
   page,
   setPage,
   pageCount,
@@ -59,7 +56,6 @@ function CommentField({
         });
       }
       localStorage.setItem("comments", JSON.stringify(comments));
-      // setAllComments(comments);
       e.target[0].value = "";
       let tempThreads = getAllThreads();
       const threadIndex = tempThreads.findIndex(

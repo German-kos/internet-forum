@@ -12,7 +12,7 @@ import { getLoggedUser } from "../../Resources/functions";
 import PageNotFound from "./PageNotFound";
 import PublicProfileCard from "../Profile/PublicProfileCard";
 import Messages from "../Private-Messages/Messages";
-// import LayoutTest from "../Landing-Page/Layout";
+import Guidelines from "../Forum/Guidelines";
 
 function SiteRouter({ user, setUser, users }) {
   return (
@@ -31,13 +31,14 @@ function SiteRouter({ user, setUser, users }) {
           <Route
             path="/profile"
             element={
-              user === null ? (
+              user === null || user === undefined ? (
                 <Navigate to="/login" />
               ) : (
                 <PersonalProfileCard user={user} />
               )
             }
           />
+          <Route path="/guidelines" element={<Guidelines />} />
           {/* <Route path="/aaa" element={<UserList />} /> */}
           <Route path="/user" element={<Navigate to="/" />} />
           <Route
@@ -47,7 +48,7 @@ function SiteRouter({ user, setUser, users }) {
           <Route
             path="/pms"
             element={
-              user !== null ? (
+              user !== null && user !== undefined ? (
                 <Messages user={user} />
               ) : (
                 <Navigate to="/login" />

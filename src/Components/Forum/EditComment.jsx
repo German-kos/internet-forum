@@ -1,9 +1,7 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { IconButton } from "@mui/material";
@@ -68,8 +66,6 @@ function EditComment({ comment }) {
       });
       handleClose();
     }
-    // console.log(temp.findIndex((x) => x.commentID === comment.commentID));
-    // console.log(temp.findIndex(comment));
   };
   return (
     <div>
@@ -79,9 +75,6 @@ function EditComment({ comment }) {
       >
         <EditIcon sx={{ opacity: "0.5" }} />
       </IconButton>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Slide in alert dialog
-      </Button> */}
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -106,12 +99,8 @@ function EditComment({ comment }) {
               <button type="submit">Post Changes</button>
             </div>
           </form>
-          {/* </div> */}
         </DialogContent>
-        <DialogActions>
-          {/* <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>Agree</Button> */}
-        </DialogActions>
+        <DialogActions></DialogActions>
       </Dialog>
     </div>
   );

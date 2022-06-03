@@ -1,0 +1,28 @@
+.footerStyle {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: "gray";
+  font-weight: bolder;
+}
+.FooterLinks {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.FooterIcon {
+  width: auto;
+  height: 75%;
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+}
+.footerLink {
+  transition: all 0.2s;
+}
+.footerLink:hover {
+  transition: all 0.2s;
+  transform: scale(1.05);
+}
