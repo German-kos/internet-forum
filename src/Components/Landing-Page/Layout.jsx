@@ -22,7 +22,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import MailIcon from "@mui/icons-material/Mail";
 import Footer from "./Footer";
 import { Gavel } from "@mui/icons-material";
-//
+import InfoIcon from "@mui/icons-material/Info";
 //
 const theme = createTheme({
   components: {
@@ -94,6 +94,11 @@ function Layout({ user, setUser, users, children }) {
     closeDrawer();
     return navigate("/guidelines");
   };
+  //
+  const handleAboutClick = () => {
+    closeDrawer();
+    return navigate("/about");
+  };
   return (
     <>
       <ThreadContextProvider>
@@ -123,7 +128,11 @@ function Layout({ user, setUser, users, children }) {
                   >
                     <MenuIcon />
                   </IconButton>
-                  <img src={"./files/Images/asdf.png"} />
+                  <img
+                    className="realTalk"
+                    onClick={() => navigate("/")}
+                    src={"./files/Images/asdf.png"}
+                  />
                 </div>
                 <IconButton
                   color="inherit"
@@ -202,6 +211,12 @@ function Layout({ user, setUser, users, children }) {
                   <Gavel sx={{ marginRight: "4px" }} />
                   Guidelines
                 </ListItem>
+                <Divider />
+                <ListItem button onClick={handleAboutClick}>
+                  <InfoIcon sx={{ marginRight: "4px" }} />
+                  About
+                </ListItem>
+
                 {user?.admin ? (
                   <>
                     <Divider />

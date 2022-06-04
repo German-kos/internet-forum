@@ -10,6 +10,7 @@ import PageNotFound from "./PageNotFound";
 import PublicProfileCard from "../Profile/PublicProfileCard";
 import Messages from "../Private-Messages/Messages";
 import Guidelines from "../Forum/Guidelines";
+import About from "../Forum/About";
 
 function SiteRouter({ user, setUser, users }) {
   return (
@@ -41,6 +42,7 @@ function SiteRouter({ user, setUser, users }) {
             path={`/user/:userID`}
             element={<PublicProfileCard loggedUser={user} />}
           />
+          <Route path="/about" element={<About />} />
           <Route
             path="/pms"
             element={
